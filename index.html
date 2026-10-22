@@ -26,23 +26,26 @@
 <style>
 img{max-width:100%}
 [hidden]{display:none!important}
-/* Layout: one long dive. A pinned stage zooms into the fish's mouth, runs down the throat,
-   and drops the reader into a dark "belly" where the recruitment content lives in a single column. */
+/* Layout: a pinned stage dives straight into the mouth's centre, runs the throat, meets the eyes in the dark,
+   and lands on the title. The recruitment content then lives "in the belly", one column at a time. */
 :root{
-  /* color — one deliberate dark world, taken from the main visual */
-  --abyss:#000000;        /* the photo's black ground */
-  --belly:#130508;        /* inside the fish */
-  --belly-raise:#1d0a0e;  /* raised surfaces inside */
-  --flesh:#eca6a6;        /* wet inner wall pink */
-  --flesh-deep:#6b1a2c;   /* throat maroon */
-  --paper:#f3eee7;        /* the white 謎解き tag */
-  --ink:#140a0b;          /* type on paper */
+  --abyss:#000000;
+  --belly:#110407;
+  --belly-raise:#1c0a0e;
+  --flesh:#eca6a6;
+  --paper:#f3eee7;
+  --paper-shade:#e4dccf;
+  --ink:#140a0b;
+  --ink-soft:#5c4a46;
   --text:#f2e8e5;
   --muted:#bea8a6;
-  --gold:#ecb84f;         /* the fish's skin, used sparingly */
-  --line:rgba(236,166,166,.18);
-  --line-strong:rgba(236,166,166,.42);
-  /* type */
+  --gold:#ecb84f;
+  --stamp:#b32630;
+  --hen:#e8333b;
+  --hen-paper:#c0222a;
+  --exit:#17a566;
+  --line:rgba(236,166,166,.17);
+  --line-strong:rgba(236,166,166,.4);
   --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP","Noto Serif CJK JP",serif;
   --f-body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Noto Sans JP","Noto Sans CJK JP",sans-serif;
   --gutter-l:max(16px, env(safe-area-inset-left, 0px));
@@ -54,23 +57,34 @@ body{margin:0;background:var(--belly);color:var(--text);font:400 16px/1.95 var(-
 ::selection{background:var(--flesh);color:var(--ink)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
-h1,h2,h3,p,dl,dd,ol,figure{margin:0}
+h1,h2,h3,p,dl,dd,ol,ul,figure{margin:0}
+.hen{color:var(--hen)}
+.ticket .hen{color:var(--hen-paper)}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
-/* film grain over everything, like the poster print */
+/* print grain */
 body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 
-/* ---------- paper tag (from the poster) ---------- */
+/* ---------- shared bits ---------- */
 .tag{display:inline-block;background:var(--paper);color:var(--ink);font:800 15px/1 var(--f-display);letter-spacing:.14em;padding:.5em .7em .45em .84em;transform:rotate(-2deg);box-shadow:0 2px 0 rgba(0,0,0,.35)}
-.tag-v{writing-mode:vertical-rl;padding:.8em .42em .7em;transform:rotate(1.6deg)}
 .tbd{display:inline-block;font:500 .8em/1.6 var(--f-body);color:var(--flesh);border:1px dashed var(--line-strong);border-radius:3px;padding:0 .55em;letter-spacing:.1em;white-space:nowrap;vertical-align:.08em}
 .tent{color:var(--muted);font-size:.86em;white-space:nowrap}
+.btn-paper{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:54px;padding:0 30px 0 34px;border:0;cursor:pointer;
+  background:var(--paper);color:var(--ink);font:800 18px/1 var(--f-display);letter-spacing:.24em;text-decoration:none;border-radius:2px;
+  transform:rotate(-1.4deg);box-shadow:0 3px 0 rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.3,.7,.2,1),background .2s}
+.btn-paper:hover{transform:rotate(0) translateY(-1px);background:#fff}
+.btn-paper svg{width:16px;height:16px}
+.btn-line{display:inline-flex;align-items:center;gap:.7em;min-height:44px;text-decoration:none;font:500 14px/1 var(--f-body);letter-spacing:.2em;color:var(--text)}
+.btn-line span{border-bottom:1px solid var(--line-strong);padding-bottom:4px;transition:border-color .2s}
+.btn-line:hover span{border-color:var(--text)}
+.btn-line svg{width:14px;height:14px}
 
 /* ---------- header ---------- */
 .bar{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding-top:env(safe-area-inset-top, 0px);padding-left:var(--gutter-l);padding-right:var(--gutter-r);
   min-height:56px;transition:background .45s ease, border-color .45s ease;border-bottom:1px solid transparent}
-.bar.in{background:rgba(19,5,8,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+.bar.in{background:rgba(17,4,7,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
 .bar-brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:44px;min-width:0}
 .bar-brand .tag{font-size:12px;padding:.45em .55em .4em .66em;white-space:nowrap;flex:none}
 .bar-name{font:700 14px/1.2 var(--f-display);letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -89,18 +103,22 @@ body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opa
 @media (max-width:540px){.bar-intro{display:none}}
 
 /* ---------- the dive ---------- */
-.dive{position:relative;height:540vh;background:var(--abyss)}
+.dive{position:relative;z-index:2;height:720vh;background:var(--abyss)}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--abyss);isolation:isolate}
-.fish,.fish-surface,.fish-breath{position:absolute;inset:0}
-.fish-surface{animation:surface 2.4s cubic-bezier(.2,.7,.2,1) both}
-.fish-breath{animation:breathe 6.5s ease-in-out infinite;transform-origin:var(--ox,50%) var(--oy,52%)}
-@keyframes surface{from{opacity:.12;filter:brightness(.3)}to{opacity:1;filter:none}}
-@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.014)}}
+.rig{position:absolute;inset:0}
+.surface{position:absolute;inset:0;animation:surface 1.9s cubic-bezier(.2,.7,.2,1) both}
+.breath{position:absolute;inset:0;animation:breathe 6.5s ease-in-out infinite;transform-origin:var(--ox,50%) var(--oy,50%)}
+@keyframes surface{from{opacity:.1;filter:brightness(.25)}to{opacity:1;filter:none}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
 .layer{position:absolute;left:50%;top:50%;width:min(calc(94svh * .7064), calc(100vw / .82));aspect-ratio:1054/1492;transform:translate(-50%,-50%);transform-origin:0 0}
 html.js .layer{left:0;top:0;transform:none;will-change:transform}
-.layer img{display:block;width:100%;height:100%;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
-.layer-full{display:none}
-/* eyelids — fish don't blink. this one does. */
+.layer > img.full{position:absolute;inset:0;display:block;width:100%;height:100%}
+.stage img{-webkit-user-select:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.rig-t{pointer-events:none}
+.tx-in{position:absolute;inset:0;animation:txIn 1.3s .55s cubic-bezier(.2,.7,.2,1) both}
+@keyframes txIn{from{opacity:0}to{opacity:1}}
+.tx{position:absolute;display:block;left:calc(var(--x) / 1054 * 100%);top:calc(var(--y) / 1492 * 100%);width:calc(var(--w) / 1054 * 100%);height:calc(var(--h) / 1492 * 100%)}
+/* eyelids: fish don't blink. this one does. */
 .lid{position:absolute;border-radius:50%;overflow:hidden;pointer-events:none}
 .lid.l{left:18.975%;top:11.26%;width:11.006%;height:10.724%;transform:rotate(25deg)}
 .lid.r{left:70.683%;top:10.724%;width:11.006%;height:10.724%;transform:rotate(-25deg)}
@@ -114,72 +132,140 @@ html.js .layer{left:0;top:0;transform:none;will-change:transform}
 
 #fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .shade{position:absolute;inset:0;pointer-events:none;opacity:0;
-  background:radial-gradient(ellipse 70% 62% at var(--vx,50%) var(--vy,52%),transparent 22%,rgba(0,0,0,.72) 74%,#000 100%)}
-.veil{position:absolute;inset:0;background:var(--belly);opacity:0;pointer-events:none}
+  background:radial-gradient(ellipse 70% 62% at 50% 50%,transparent 20%,rgba(0,0,0,.74) 72%,#000 100%)}
 .phrases{position:absolute;inset:0;pointer-events:none}
-.ph{position:absolute;left:0;top:0;writing-mode:vertical-rl;white-space:nowrap;opacity:0;will-change:transform,opacity;
-  font:800 clamp(30px,7.4vw,60px)/1.25 var(--f-display);letter-spacing:.16em;color:var(--text);text-shadow:0 0 28px rgba(0,0,0,.7)}
+.ph{position:absolute;left:0;top:0;display:flex;flex-direction:row-reverse;align-items:flex-start;gap:.3em;opacity:0;will-change:transform,opacity;
+  font:800 clamp(28px,7vw,56px)/1.25 var(--f-display);letter-spacing:.2em;color:var(--text);text-shadow:0 0 26px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.6)}
+.ph span{writing-mode:vertical-rl;white-space:nowrap;display:block}
+.ph .lo{margin-top:1.7em}
+
+/* the dark: only the eyes, looking around */
+.eyes{position:absolute;left:50%;top:46%;width:min(112vw,760px,130svh);aspect-ratio:100/41;transform:translate(-50%,-50%);opacity:0;visibility:hidden;pointer-events:none}
+.eyes-in{position:absolute;inset:0;transition:opacity .2s ease}
+.eye{position:absolute;width:40%;aspect-ratio:1}
+.eye.l{left:0;top:calc(1 / 41 * 100%)}
+.eye.r{left:60%;top:0}
+.eye-glow{position:absolute;left:-45%;top:-45%;width:190%;height:190%;border-radius:50%;opacity:0;mix-blend-mode:screen;
+  background:radial-gradient(closest-side,rgba(255,196,84,.34),rgba(226,120,40,.12) 45%,transparent 72%)}
+.eye-lid{position:absolute;inset:0;transform:scaleY(.02);transform-origin:50% 48%;filter:brightness(1.12) saturate(1.1)}
+.eye-lid img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.eye-lid .lk{opacity:0}
+.eyes.awake .eye-lid{animation:eyeOpen .6s cubic-bezier(.2,.8,.2,1) both,blink 4.8s .6s infinite}
+.eyes.awake .lft{animation:lkL 4.8s .75s linear infinite}
+.eyes.awake .rgt{animation:lkR 4.8s .75s linear infinite}
+.eyes.awake .rd{animation:lkD 4.8s .75s linear infinite}
+.eyes.awake .eye-glow{animation:glowIn .9s ease-out both,glowPulse 2.4s .9s ease-in-out infinite alternate}
+.eyes.gone .eyes-in{opacity:0}
+.eyes.gone .eye-lid{animation:shut .14s ease-in both}
+@keyframes eyeOpen{0%{transform:scaleY(.02)}100%{transform:scaleY(1)}}
+@keyframes shut{to{transform:scaleY(.02)}}
+@keyframes blink{0%,44%,48.5%,90%,94.5%,100%{transform:scaleY(1)}46%,92%{transform:scaleY(.06)}}
+@keyframes lkL{0%,8.8%{opacity:0}10%,30%{opacity:1}31.2%,52.8%{opacity:0}54%,64%{opacity:1}65.2%,100%{opacity:0}}
+@keyframes lkR{0%,30%{opacity:0}31.2%,52.8%{opacity:1}54%,100%{opacity:0}}
+@keyframes lkD{0%,64%{opacity:0}65.2%,86%{opacity:1}87.2%,100%{opacity:0}}
+@keyframes glowIn{from{opacity:0}to{opacity:.85}}
+@keyframes glowPulse{from{opacity:.85}to{opacity:.55}}
+
+/* the logo, slammed down */
+.logo-glow{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .8s ease;
+  background:radial-gradient(60% 50% at 50% 50%,rgba(107,26,44,.34),transparent 70%)}
+.logo{position:absolute;left:50%;top:50%;height:min(80svh,calc((100vw - 56px) * 735 / 426));aspect-ratio:426/735;transform:translate(-50%,-50%);visibility:hidden;pointer-events:none}
+.logo-shake,.lg-main{position:absolute;inset:0}
+.lg{position:absolute;display:block;left:calc(var(--x) / 426 * 100%);top:calc(var(--y) / 735 * 100%);width:calc(var(--w) / 426 * 100%);height:calc(var(--h) / 735 * 100%)}
+.lg-hen{filter:drop-shadow(0 0 14px rgba(228,34,43,.5))}
+.lg-shock{position:absolute;left:calc(144 / 426 * 100%);top:calc(625 / 735 * 100%);width:calc(130 / 426 * 100%);aspect-ratio:1;translate:-50% -50%;border-radius:50%;border:2px solid rgba(228,34,43,.75);opacity:0}
+.impact{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(70% 60% at 50% 50%,rgba(255,246,236,.5),rgba(255,236,220,.08) 60%,transparent)}
+.logo.slam,.logo.shown{visibility:visible}
+.logo.slam ~ .logo-glow,.logo.shown ~ .logo-glow{opacity:1}
+.logo.slam .lg-main{animation:slam .52s cubic-bezier(.2,.9,.25,1) both}
+.logo.slam .lg-hen{animation:henIn .5s .42s cubic-bezier(.2,.9,.25,1) both,henTwitch 5s 1.8s infinite}
+.logo.slam .lg-shock{animation:shock .7s .58s ease-out forwards}
+.logo.slam .logo-shake{animation:shake .95s linear both}
+.logo.shown .lg-hen{animation:henTwitch 5s 1s infinite}
+.impact.on{animation:impact .7s ease-out both}
+@keyframes slam{0%{opacity:0;transform:scale(1.9)}46%{opacity:1;transform:scale(.965)}72%{transform:scale(1.012)}100%{opacity:1;transform:scale(1)}}
+@keyframes henIn{0%{opacity:0;transform:scale(2.7) rotate(-12deg)}52%{opacity:1;transform:scale(.9) rotate(3deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes henTwitch{0%,90%,100%{transform:none}91.5%{transform:translate(3%,-2%) rotate(-4deg)}93.5%{transform:translate(-3%,1%) rotate(3deg)}95.5%{transform:rotate(-1deg)}}
+@keyframes shock{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(3.4)}}
+@keyframes shake{0%,30%,52%,82%,100%{translate:0 0}5%{translate:-1.4% .9%}10%{translate:1.2% -.8%}15%{translate:-.8% .5%}20%{translate:.5% -.3%}25%{translate:-.2% .1%}
+  58%{translate:1% .7%}63%{translate:-.9% -.5%}68%{translate:.5% .3%}74%{translate:-.2% -.1%}}
+@keyframes impact{0%{opacity:1}100%{opacity:0}}
+
 .cue{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom, 0px) + 18px);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none;
   font:500 11px/1 var(--f-body);letter-spacing:.32em;color:var(--text);text-shadow:0 1px 10px #000;white-space:nowrap}
 .cue-line{width:1px;height:38px;background:linear-gradient(var(--text),transparent);transform-origin:top;animation:drip 2.4s cubic-bezier(.6,0,.3,1) infinite}
+.cue2{opacity:0}
 @keyframes drip{0%{transform:scaleY(0);opacity:1}55%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
 
-/* ---------- belly: content ---------- */
-.wrap{max-width:1080px;margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+/* ---------- belly ---------- */
+#snow{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main > section:not(.dive),footer{position:relative;z-index:1}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
 @media (min-width:600px){.wrap{padding-left:max(32px, env(safe-area-inset-left, 0px));padding-right:max(32px, env(safe-area-inset-right, 0px))}}
-.sec{padding-block:clamp(80px,12vw,150px);scroll-margin-top:40px}
+.sec{padding-block:clamp(84px,12vw,150px);scroll-margin-top:40px}
 .sec + .sec{border-top:1px solid var(--line)}
 .sec-head{display:grid;gap:22px;justify-items:start;margin-bottom:clamp(36px,6vw,64px)}
-.sec-head h2{font:800 clamp(27px,5.8vw,46px)/1.4 var(--f-display);letter-spacing:.08em;text-wrap:balance;font-feature-settings:"palt"}
-.sec-lead{color:var(--muted);max-width:36em}
+.sec-head h2{font:800 clamp(27px,5.6vw,44px)/1.42 var(--f-display);letter-spacing:.08em;text-wrap:balance;font-feature-settings:"palt"}
 .sec-head h2 span{display:inline-block}
-
-/* arrival */
-.arrival{position:relative;padding-block:clamp(96px,14vw,170px) clamp(80px,12vw,140px);scroll-margin-top:0}
-.arrival::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(60% 46% at 50% 40%,rgba(107,26,44,.42),transparent 70%)}
-.arrival-grid{position:relative;display:grid;justify-content:center;grid-template-columns:auto minmax(0,34em);gap:clamp(40px,8vw,110px);align-items:center}
-.titleset{display:flex;flex-direction:row-reverse;align-items:flex-start;gap:clamp(10px,2vw,18px);justify-self:center}
-.titleset .tag-v{font-size:clamp(17px,3.6vw,26px);margin-top:0}
-.vtitle{display:flex;flex-direction:row-reverse;gap:.12em;font:800 clamp(46px,11.5vw,88px)/1.08 var(--f-display);letter-spacing:.06em}
-.vtitle span{writing-mode:vertical-rl;display:block}
-.vtitle span:first-child{margin-top:.5em}
-.vtitle span:last-child{margin-top:2.15em}
-.vsub{writing-mode:vertical-rl;font:700 clamp(14px,2.6vw,20px)/1 var(--f-display);letter-spacing:.32em;margin-top:clamp(120px,27vw,205px);display:flex;align-items:center;gap:.7em;color:var(--text)}
-.vsub::before,.vsub::after{content:"";display:block;width:1px;height:1.6em;background:currentColor}
-.arrival-body{display:grid;gap:28px;min-width:0}
-.kicker{display:flex;flex-wrap:wrap;align-items:center;gap:12px;font:700 13px/1.4 var(--f-body);letter-spacing:.24em;color:var(--flesh)}
-.lead{font:700 clamp(19px,3.2vw,25px)/1.75 var(--f-display);letter-spacing:.06em;max-width:22em;text-wrap:pretty}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.facts div{padding:16px 12px 14px 0;display:grid;gap:6px;min-width:0}
-.facts div + div{padding-left:14px;border-left:1px solid var(--line)}
-.facts dt{font:500 11px/1 var(--f-body);letter-spacing:.24em;color:var(--muted)}
-.facts dd{font-size:15px}
-.actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
-.btn-paper{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:54px;padding:0 30px 0 34px;border:0;cursor:pointer;
-  background:var(--paper);color:var(--ink);font:800 18px/1 var(--f-display);letter-spacing:.24em;text-decoration:none;border-radius:2px;
-  transform:rotate(-1.4deg);box-shadow:0 3px 0 rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.3,.7,.2,1),background .2s}
-.btn-paper:hover{transform:rotate(0) translateY(-1px);background:#fff}
-.btn-paper svg{width:16px;height:16px}
-.btn-line{display:inline-flex;align-items:center;gap:.7em;min-height:44px;text-decoration:none;font:500 14px/1 var(--f-body);letter-spacing:.2em;color:var(--text)}
-.btn-line span{border-bottom:1px solid var(--line-strong);padding-bottom:4px;transition:border-color .2s}
-.btn-line:hover span{border-color:var(--text)}
-.btn-line svg{width:14px;height:14px}
-@media (max-width:760px){
-  .arrival-grid{grid-template-columns:minmax(0,1fr);justify-content:stretch;gap:56px}
-  .facts{grid-template-columns:minmax(0,1fr)}
-  .facts div,.facts div + div{padding:14px 0;border-left:0;grid-template-columns:5.5em minmax(0,1fr);align-items:baseline}
-  .facts div + div{border-top:1px solid var(--line)}
+.sec-lead{color:var(--muted);max-width:36em}
+@media (min-width:960px){
+  .side{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:72px;align-items:start}
+  .side .sec-head{position:sticky;top:112px;margin-bottom:0}
+  .side .sec-head h2{font-size:clamp(28px,2.8vw,36px)}
 }
 
+/* arrival + ticket */
+.arrival{padding-block:clamp(110px,14vw,170px) clamp(84px,12vw,140px);background:linear-gradient(var(--abyss),transparent 340px);scroll-margin-top:0}
+.arrival-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,500px);gap:clamp(48px,7vw,96px);align-items:center}
+.arrival-copy{display:grid;gap:26px;justify-items:start;min-width:0}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font:700 13px/1.4 var(--f-body);letter-spacing:.24em;color:var(--flesh)}
+.eyebrow .sep{width:18px;height:1px;background:var(--line-strong)}
+.lead{font:800 clamp(32px,6vw,56px)/1.38 var(--f-display);letter-spacing:.06em;text-wrap:balance;font-feature-settings:"palt"}
+.arrival .body{max-width:30em;color:var(--text)}
+.actions{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:6px}
+
+.ticket-wrap{filter:drop-shadow(0 22px 34px rgba(0,0,0,.55));transform:rotate(-2.4deg);justify-self:center;width:100%;max-width:500px}
+.ticket{--stub:92px;position:relative;display:grid;grid-template-columns:minmax(0,1fr) var(--stub);background:var(--paper);color:var(--ink);
+  background-image:radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.55),transparent 60%),repeating-linear-gradient(0deg,rgba(20,10,11,.025) 0 1px,transparent 1px 4px);
+  -webkit-mask:radial-gradient(circle 11px at calc(100% - var(--stub)) 0,#0000 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 11px at calc(100% - var(--stub)) 100%,#0000 97%,#000) bottom/100% 51% no-repeat;
+          mask:radial-gradient(circle 11px at calc(100% - var(--stub)) 0,#0000 97%,#000) top/100% 51% no-repeat,radial-gradient(circle 11px at calc(100% - var(--stub)) 100%,#0000 97%,#000) bottom/100% 51% no-repeat}
+.tk-main{padding:26px 22px 24px 26px;display:grid;gap:14px;min-width:0}
+.tk-kind{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font:700 12px/1 var(--f-body);letter-spacing:.3em;color:var(--ink-soft);border-bottom:1.5px solid var(--ink);padding-bottom:12px}
+.tk-kind .en{font:500 10px/1 var(--f-body);letter-spacing:.32em}
+.tk-name{display:grid;justify-items:start;gap:10px;font:800 clamp(19px,5.6vw,27px)/1.35 var(--f-display);letter-spacing:.05em;font-feature-settings:"palt"}
+.tk-name .nm{white-space:nowrap}
+.tk-name .mini{display:inline-block;font-size:12px;letter-spacing:.16em;background:var(--ink);color:var(--paper);padding:.45em .55em .4em .7em;transform:rotate(-2deg)}
+.tk-sub{font:700 13px/1 var(--f-display);letter-spacing:.24em;color:var(--ink-soft);margin-top:-4px}
+.tk-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid rgba(20,10,11,.2);margin-top:4px}
+.tk-fields div{display:grid;gap:4px;padding:12px 10px 10px 0;border-bottom:1px solid rgba(20,10,11,.2);min-width:0}
+.tk-fields div:nth-child(even){padding-left:12px;border-left:1px solid rgba(20,10,11,.2)}
+.tk-fields dt{font:500 10.5px/1 var(--f-body);letter-spacing:.26em;color:var(--ink-soft)}
+.tk-fields dd{font:700 15px/1.5 var(--f-display);letter-spacing:.06em}
+.tk-fields small{font:500 11px/1 var(--f-body);color:var(--ink-soft);margin-left:6px;letter-spacing:.1em}
+.ticket .tbd{color:#8e2a2f;border-color:rgba(142,42,47,.45)}
+.tk-stub{position:relative;border-left:2px dashed rgba(20,10,11,.28);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:26px 0 22px;
+  background:linear-gradient(rgba(20,10,11,.04),rgba(20,10,11,.04))}
+.tk-stub-t{writing-mode:vertical-rl;font:800 15px/1 var(--f-display);letter-spacing:.5em;color:var(--ink)}
+.tk-stamp{width:58px;height:58px;border-radius:50%;border:2.5px solid var(--stamp);color:var(--stamp);display:grid;place-items:center;
+  font:800 28px/1 var(--f-display);transform:rotate(-14deg);opacity:.88;box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px var(--stamp);
+  -webkit-mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 1.9'/></filter><rect width='64' height='64' filter='url(%23f)'/></svg>");
+          mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 1.9'/></filter><rect width='64' height='64' filter='url(%23f)'/></svg>")}
+@media (max-width:860px){
+  .arrival-grid{grid-template-columns:minmax(0,1fr)}
+  .ticket-wrap{max-width:440px;margin-top:8px}
+}
+@media (max-width:400px){.ticket{--stub:70px}.tk-main{padding:22px 16px 20px 18px}.tk-stamp{width:48px;height:48px;font-size:23px}}
+
 /* story */
-.story-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(40px,7vw,96px);align-items:start}
-.prose{display:grid;gap:1.3em;max-width:34em;font-size:16.5px;line-height:2.05}
-.prose .em{font:700 1.12em/1.9 var(--f-display);letter-spacing:.08em;color:var(--text)}
+.story-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(44px,7vw,96px);align-items:start}
+.prose{display:grid;gap:1.25em;max-width:34em;font-size:16.5px;line-height:2.05}
+.prose .hush{font:700 1.06em/1.95 var(--f-display);letter-spacing:.1em;color:var(--muted);padding-left:1em;border-left:1px solid var(--line-strong)}
+.prose .em{font:800 1.18em/1.85 var(--f-display);letter-spacing:.08em;color:var(--text)}
 .note{font-size:12px;color:var(--muted);letter-spacing:.12em}
-.torch-fig{display:grid;gap:14px;min-width:0}
+.torch-fig{display:grid;gap:16px;min-width:0}
 .torch{position:relative;aspect-ratio:4/5;max-width:100%;background:#050102;border:1px solid var(--line);overflow:hidden;touch-action:pan-y;cursor:none;
   --x:50%;--y:45%;--r:clamp(96px,30vw,160px)}
+.torch::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.06),transparent 30%,transparent 70%,rgba(255,255,255,.03))}
 .torch-lit{position:absolute;inset:0;
   -webkit-mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,rgba(0,0,0,.55) 62%,transparent 100%);
           mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,rgba(0,0,0,.55) 62%,transparent 100%)}
@@ -190,6 +276,14 @@ html.js .layer{left:0;top:0;transform:none;will-change:transform}
 @keyframes squint{0%{transform:scaleY(1)}40%,56%{transform:scaleY(.05)}100%{transform:scaleY(1)}}
 .torch-word{position:absolute;left:50%;top:36%;transform:translateX(-50%);writing-mode:vertical-rl;white-space:nowrap;font:800 clamp(26px,6vw,42px)/1.3 var(--f-display);letter-spacing:.24em;color:#fff3ef;text-shadow:0 0 18px rgba(80,10,20,.9)}
 .torch-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle var(--r) at var(--x) var(--y),rgba(255,236,214,.10),transparent 70%)}
+.specimen{background:var(--paper);color:var(--ink);display:grid;grid-template-columns:auto minmax(0,1fr);border-top:6px solid #26445a;box-shadow:0 2px 0 rgba(0,0,0,.35)}
+.specimen-k{writing-mode:vertical-rl;font:700 11px/1 var(--f-body);letter-spacing:.34em;background:#26445a;color:#e9f0f4;padding:14px 9px;text-align:center}
+.specimen dl{display:grid;padding:12px 16px 12px 18px;gap:2px}
+.specimen dl div{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:8px;align-items:baseline;padding:6px 0;border-bottom:1px dotted rgba(20,10,11,.25)}
+.specimen dl div:last-child{border-bottom:0}
+.specimen dt{font:500 11px/1.6 var(--f-body);letter-spacing:.2em;color:var(--ink-soft)}
+.specimen dd{font:700 15px/1.6 var(--f-display);letter-spacing:.06em}
+.specimen .big{font-size:20px;letter-spacing:.2em}
 .torch-fig figcaption{font-size:12.5px;color:var(--muted);letter-spacing:.14em;display:flex;align-items:center;gap:10px}
 .torch-fig figcaption::before{content:"";width:18px;height:1px;background:var(--line-strong)}
 .cap-fine{display:none}
@@ -198,8 +292,9 @@ html.js .layer{left:0;top:0;transform:none;will-change:transform}
 
 /* points */
 .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,56px)}
-.pt{display:grid;gap:14px;align-content:start;border-top:1px solid var(--line-strong);padding-top:24px;min-width:0}
-.pt .pt-key{font:800 clamp(30px,4.4vw,40px)/1.2 var(--f-display);letter-spacing:.1em;color:var(--text);font-feature-settings:"palt"}
+.pt{display:grid;gap:14px;align-content:start;border-top:1px solid var(--line-strong);padding-top:26px;min-width:0}
+.pt-ic{width:34px;height:34px;color:var(--flesh)}
+.pt .pt-key{font:800 clamp(30px,4.2vw,40px)/1.2 var(--f-display);letter-spacing:.1em;color:var(--text);font-feature-settings:"palt"}
 .pt-key em{font-style:normal;color:var(--flesh)}
 .pt p{color:var(--muted);font-size:15px;line-height:1.95}
 @media (max-width:760px){.points{grid-template-columns:minmax(0,1fr)}}
@@ -209,18 +304,16 @@ html.js .layer{left:0;top:0;transform:none;will-change:transform}
 .outline dt,.outline dd{padding:18px 0;border-bottom:1px solid var(--line)}
 .outline dt{font:500 13px/1.9 var(--f-body);letter-spacing:.2em;color:var(--muted);padding-right:16px}
 .outline dd{font-size:16px;min-width:0}
-.outline dd .ev{font:700 17px/1.7 var(--f-display);letter-spacing:.06em;display:block}
-.outline dd .ev + .ev{font-size:14px;color:var(--muted)}
+.outline .ev{font:700 17px/1.7 var(--f-display);letter-spacing:.06em;display:block}
+.outline .ev + .ev{font-size:14px;color:var(--muted)}
 @media (max-width:600px){.outline{grid-template-columns:6.4em minmax(0,1fr)}.outline dt{letter-spacing:.12em}}
-@media (min-width:960px){
-  .side{display:grid;grid-template-columns:minmax(0,290px) minmax(0,1fr);gap:72px;align-items:start}
-  .side .sec-head{position:sticky;top:112px;margin-bottom:0}
-  .side .sec-head h2{font-size:clamp(28px,2.8vw,36px)}
-}
 
 /* flow */
+.route{display:flex;margin-bottom:34px}
+.route-sign{display:inline-flex;align-items:center;gap:12px;border:1.5px solid var(--text);border-radius:4px;padding:8px 14px 8px 16px;font:800 17px/1 var(--f-display);letter-spacing:.3em}
+.route-sign svg{width:16px;height:20px}
 .flow{position:relative;list-style:none;padding:0;display:grid;gap:clamp(36px,6vw,52px);max-width:760px}
-.flow svg{position:absolute;left:0;top:0;width:52px;height:100%;overflow:visible;pointer-events:none}
+.flow > svg{position:absolute;left:0;top:0;width:52px;height:100%;overflow:visible;pointer-events:none}
 .flow li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;align-items:start;position:relative}
 .fn{width:36px;height:36px;margin:2px 8px;border-radius:50%;display:grid;place-items:center;background:var(--belly);border:1px solid var(--line-strong);
   font:800 15px/1 var(--f-display);color:var(--muted);transition:background .35s,color .35s,border-color .35s,transform .35s;position:relative;z-index:1}
@@ -235,7 +328,7 @@ html.js .layer{left:0;top:0;transform:none;will-change:transform}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;padding:14px 0;font:700 16.5px/1.7 var(--f-display);letter-spacing:.06em}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::before{content:"Q";font:800 15px/1 var(--f-display);color:var(--flesh);margin-right:2px;flex:none;width:1.4em}
+.faq summary::before{content:"Q";font:800 15px/1 var(--f-display);color:var(--flesh);flex:none;width:1.4em}
 .faq summary span{flex:1;min-width:0}
 .faq summary::after{content:"";width:12px;height:12px;flex:none;margin-right:4px;
   background:linear-gradient(var(--text),var(--text)) center/12px 1.5px no-repeat,linear-gradient(var(--text),var(--text)) center/1.5px 12px no-repeat;transition:transform .3s}
@@ -243,11 +336,18 @@ html.js .layer{left:0;top:0;transform:none;will-change:transform}
 .faq .ans{padding:0 0 22px 1.4em;color:var(--muted);font-size:15px;margin-left:18px}
 
 /* apply */
-.apply{position:relative;padding-block:clamp(100px,14vw,170px) clamp(64px,9vw,100px);overflow:hidden;border-top:1px solid var(--line)}
+.apply{padding-block:clamp(100px,14vw,170px) clamp(64px,9vw,100px);overflow:hidden;border-top:1px solid var(--line)}
 .apply::before{content:"";position:absolute;left:50%;bottom:-30%;width:140%;height:90%;transform:translateX(-50%);pointer-events:none;
-  background:radial-gradient(50% 50% at 50% 60%,rgba(236,184,79,.14),rgba(107,26,44,.2) 45%,transparent 72%)}
+  background:radial-gradient(50% 50% at 50% 60%,rgba(236,184,79,.13),rgba(107,26,44,.2) 45%,transparent 72%)}
 .apply-grid{position:relative;display:grid;justify-content:center;grid-template-columns:auto minmax(0,28em);gap:clamp(40px,8vw,110px);align-items:center}
-.vhead{writing-mode:vertical-rl;font:800 clamp(40px,8vw,72px)/1.25 var(--f-display);letter-spacing:.12em;justify-self:center}
+.apply-head{display:flex;flex-direction:column;align-items:center;gap:36px}
+.exit-sign{display:inline-flex;align-items:center;gap:12px;background:var(--exit);color:#effff6;border-radius:3px;padding:9px 16px 9px 14px;
+  font:800 18px/1 var(--f-display);letter-spacing:.3em;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 0 26px rgba(23,165,102,.55),0 0 80px rgba(23,165,102,.25);
+  animation:hum 7s steps(1) infinite}
+.exit-sign small{font:700 10px/1 var(--f-body);letter-spacing:.24em;opacity:.85}
+.exit-sign svg{width:18px;height:14px}
+@keyframes hum{0%,91%,95%,100%{opacity:1}92%,94%{opacity:.45}93%{opacity:.85}}
+.vhead{writing-mode:vertical-rl;font:800 clamp(40px,8vw,72px)/1.25 var(--f-display);letter-spacing:.12em}
 .vhead span{display:block}
 .vhead span + span{margin-top:1.6em}
 .apply-body{display:grid;gap:24px;justify-items:start;min-width:0}
@@ -265,13 +365,11 @@ footer{border-top:1px solid var(--line);padding-block:36px calc(36px + env(safe-
 .foot dl{display:flex;flex-wrap:wrap;gap:4px 24px}
 .foot dl div{display:flex;gap:10px}
 
-/* reduced motion: no dive, the visual sits still */
+/* reduced motion: the poster sits still */
 html.rm .dive{height:auto}
 html.rm .stage{position:relative;height:100svh;min-height:520px}
-html.rm #fx,html.rm .phrases,html.rm .shade,html.rm .veil,html.rm .cue-line{display:none}
-html.rm .fish-surface,html.rm .fish-breath{animation:none}
-html.rm .layer-inner,html.rm .layer-outer{display:none}
-html.rm .layer-full{display:block}
+html.rm #fx,html.rm .phrases,html.rm .shade,html.rm .eyes,html.rm .logo,html.rm .logo-glow,html.rm .impact,html.rm .cue-line,html.rm .cue2,html.rm #snow{display:none}
+html.rm .surface,html.rm .breath,html.rm .tx-in,html.rm .exit-sign{animation:none}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
 </head>
@@ -279,7 +377,7 @@ html.rm .layer-full{display:block}
 <header class="bar" id="bar">
   <a class="bar-brand" href="#top" aria-label="ページの先頭へ">
     <span class="tag when-in">謎解き</span>
-    <span class="bar-name when-in">この水族館、なんか変。</span>
+    <span class="bar-name when-in">この水族館、なんか<span class="hen">変</span>。</span>
     <span class="bar-intro when-out">謎解きイベント　参加者募集</span>
   </a>
   <div class="bar-right">
@@ -290,59 +388,97 @@ html.rm .layer-full{display:block}
 </header>
 
 <main>
-  <section class="dive" id="top" aria-label="メインビジュアル">
+  <section class="dive" id="top" aria-labelledby="title">
+    <h1 class="vh" id="title">謎解き　この水族館、なんか変。─閉館後もやっぱり変─</h1>
     <div class="stage">
-      <div class="fish">
-        <div class="fish-surface">
-          <div class="fish-breath">
-            <div class="layer layer-full"><img src="fish-full.webp" alt="大きく口を開けた魚の正面写真。口の中に「謎解き　この水族館、なんか変。─閉館後もやっぱり変─」の文字。"></div>
-            <div class="layer layer-inner"><img src="fish-inner.webp" alt="大きく口を開けた魚の正面写真。口の中に「謎解き　この水族館、なんか変。─閉館後もやっぱり変─」の文字。"></div>
-            <div class="layer layer-outer" id="outer"><img src="fish-outer.webp" alt=""><span class="lid l"><i></i></span><span class="lid r"><i></i></span></div>
+      <div class="rig rig-a" id="rigA">
+        <div class="surface">
+          <div class="breath" id="breath">
+            <div class="layer layer-inner"><img class="full" src="fish-inner.webp" alt=""></div>
+            <div class="layer layer-outer" id="outer"><img class="full" src="fish-outer.webp" alt=""><span class="lid l"><i></i></span><span class="lid r"><i></i></span></div>
           </div>
         </div>
       </div>
       <canvas id="fx" aria-hidden="true"></canvas>
       <div class="shade" aria-hidden="true"></div>
-      <div class="phrases" aria-hidden="true">
-        <p class="ph">閉館のチャイムが鳴った。</p>
-        <p class="ph">もう、だれもいない。</p>
-        <p class="ph">……はずだった。</p>
+      <div class="rig rig-t" id="rigT">
+        <div class="layer layer-text" id="txA">
+          <div class="tx-in" role="img" aria-label="大きく口を開けた魚。口の中に「謎解き　この水族館、なんか変。─閉館後もやっぱり変─」の文字">
+            <img class="tx" style="--x:625;--y:368;--w:137;--h:241" src="t-tag.webp" alt="">
+            <img class="tx" style="--x:533;--y:429;--w:142;--h:585" src="t-col1.webp" alt="">
+            <img class="tx" style="--x:409;--y:595;--w:174;--h:508" src="t-col2.webp" alt="">
+            <img class="tx" style="--x:336;--y:602;--w:57;--h:462" src="t-sub.webp" alt="">
+          </div>
+        </div>
       </div>
-      <div class="veil" aria-hidden="true"></div>
-      <div class="cue" aria-hidden="true"><span>スクロールして、口の中へ</span><span class="cue-line"></span></div>
+      <div class="phrases" aria-hidden="true">
+        <p class="ph"><span>閉館後の水族館。</span></p>
+        <p class="ph"><span>だれもいない</span><span class="lo">静かな時間。</span></p>
+        <p class="ph"><span>……のはずだった。</span></p>
+      </div>
+      <div class="eyes" id="eyes" aria-hidden="true">
+        <div class="eyes-in">
+          <div class="eye l"><span class="eye-glow"></span><div class="eye-lid"><img src="eye-l-c.webp" alt=""><img class="lk lft" src="eye-l-lft.webp" alt=""><img class="lk rgt" src="eye-l-rgt.webp" alt=""><img class="lk rd" src="eye-l-rd.webp" alt=""><img src="eye-l-hi.webp" alt=""></div></div>
+          <div class="eye r"><span class="eye-glow"></span><div class="eye-lid"><img src="eye-r-c.webp" alt=""><img class="lk lft" src="eye-r-lft.webp" alt=""><img class="lk rgt" src="eye-r-rgt.webp" alt=""><img class="lk rd" src="eye-r-rd.webp" alt=""><img src="eye-r-hi.webp" alt=""></div></div>
+        </div>
+      </div>
+      <div class="logo" id="logo" aria-hidden="true">
+        <div class="logo-shake">
+          <div class="lg-main">
+            <img class="lg" style="--x:289;--y:0;--w:137;--h:241" src="t-tag.webp" alt="">
+            <img class="lg" style="--x:197;--y:61;--w:142;--h:585" src="t-col1.webp" alt="">
+            <img class="lg" style="--x:73;--y:227;--w:174;--h:508" src="t-col2-nh.webp" alt="">
+            <img class="lg" style="--x:0;--y:234;--w:57;--h:462" src="t-sub.webp" alt="">
+          </div>
+          <span class="lg-shock"></span>
+          <img class="lg lg-hen" style="--x:82;--y:559;--w:124;--h:132" src="t-hen.webp" alt="">
+        </div>
+      </div>
+      <div class="logo-glow" aria-hidden="true"></div>
+      <div class="impact" id="impact" aria-hidden="true"></div>
+      <div class="cue" id="cue" aria-hidden="true"><span>スクロールして、口の中へ</span><span class="cue-line"></span></div>
+      <div class="cue cue2" id="cue2" aria-hidden="true"><span>そのまま、奥へ</span><span class="cue-line"></span></div>
     </div>
   </section>
 
-  <section class="arrival" id="arrival" aria-labelledby="title">
+  <section class="arrival" id="arrival" aria-labelledby="h-arrival">
     <div class="wrap arrival-grid">
-      <div class="titleset">
-        <span class="tag tag-v">謎解き</span>
-        <h1 class="vtitle" id="title"><span>この水族館、</span><span>なんか変。</span></h1>
-        <p class="vsub">閉館後もやっぱり変</p>
-      </div>
-      <div class="arrival-body">
-        <p class="kicker">参加者募集<span class="tbd">受付開始日 未定</span></p>
-        <p class="lead">閉館後の水族館を歩きまわって、館内に隠された謎を解く、夜の謎解きイベントです。</p>
-        <dl class="facts">
-          <div><dt>開催日</dt><dd><span class="tbd">未定</span></dd></div>
-          <div><dt>会場</dt><dd><span class="tbd">未定</span></dd></div>
-          <div><dt>参加費</dt><dd><span class="tbd">未定</span></dd></div>
-        </dl>
+      <div class="arrival-copy">
+        <p class="eyebrow"><span>謎解きイベント</span><span class="sep" aria-hidden="true"></span><span>参加者募集</span><span class="tbd">受付開始日 未定</span></p>
+        <h2 class="lead" id="h-arrival">閉館後の水族館で、<br>謎を解く。</h2>
+        <p class="body">お客さんが帰り、照明の落ちた水族館。館内を歩きまわって展示に隠された手がかりを集め、この水族館の「変」の正体をつきとめる、夜だけの謎解きイベントです。</p>
         <div class="actions">
           <a class="btn-paper" href="#apply">申し込む</a>
           <a class="btn-line" href="#outline"><span>開催概要を見る</span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v11M2.5 7.8 7 12.3l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
         </div>
+      </div>
+      <div class="ticket-wrap">
+        <figure class="ticket" aria-label="閉館後入館券。開催日・時間・会場・参加費はいずれも未定">
+          <div class="tk-main">
+            <p class="tk-kind"><span>閉館後入館券</span><span class="en">AFTER HOURS</span></p>
+            <p class="tk-name"><span class="mini">謎解き</span><span class="nm">この水族館、なんか<span class="hen">変</span>。</span></p>
+            <p class="tk-sub">─ 閉館後もやっぱり変 ─</p>
+            <dl class="tk-fields">
+              <div><dt>開催日</dt><dd><span class="tbd">未定</span></dd></div>
+              <div><dt>時間</dt><dd><span class="tbd">未定</span><small>閉館後</small></dd></div>
+              <div><dt>会場</dt><dd><span class="tbd">未定</span></dd></div>
+              <div><dt>参加費</dt><dd><span class="tbd">未定</span></dd></div>
+            </dl>
+          </div>
+          <div class="tk-stub" aria-hidden="true"><span class="tk-stub-t">入館証</span><span class="tk-stamp">変</span></div>
+        </figure>
       </div>
     </div>
   </section>
 
   <section class="sec" id="story" aria-labelledby="h-story">
     <div class="wrap">
-      <div class="sec-head"><span class="tag">あらすじ</span><h2 id="h-story">閉館後の館内が、<br>どこかおかしい。</h2></div>
+      <div class="sec-head"><span class="tag">あらすじ</span><h2 id="h-story"><span>閉館後の館内が、</span><span>どこかおかしい。</span></h2></div>
       <div class="story-grid">
         <div class="prose">
           <p>閉館のチャイムが鳴り、最後のお客さんが帰っていきました。照明の落ちた館内に残ったのは、水槽のポンプの音だけ。</p>
-          <p>それなのに、昼間とは何かが違う。いるはずの生きものが見当たらない。いないはずの何かが、ガラスの向こうからこちらを見ている。</p>
+          <p class="hush">だれもいない、静かな時間。<br>……のはずだった。</p>
+          <p>いるはずの生きものが見当たらない。いないはずの何かが、ガラスの向こうからこちらを見ている。</p>
           <p class="em">この水族館は、閉館後もやっぱり、なんか変。</p>
           <p>館内に残された手がかりを集めて、その「変」の正体をつきとめてください。</p>
           <p class="note">※ ストーリー・コピーは仮のものです</p>
@@ -356,6 +492,14 @@ html.rm .layer-full{display:block}
             </div>
             <div class="torch-glow"></div>
           </div>
+          <div class="specimen">
+            <span class="specimen-k">展示解説</span>
+            <dl>
+              <div><dt>名前</dt><dd class="big">？？？</dd></div>
+              <div><dt>すみか</dt><dd>この水族館（閉館後）</dd></div>
+              <div><dt>特徴</dt><dd>暗いところで、目が光る。</dd></div>
+            </dl>
+          </div>
           <figcaption><span class="cap-touch">指でなぞると、暗闇を照らせます</span><span class="cap-fine">カーソルを動かすと、暗闇を照らせます</span></figcaption>
         </figure>
       </div>
@@ -366,9 +510,21 @@ html.rm .layer-full{display:block}
     <div class="wrap">
       <div class="sec-head"><span class="tag">ポイント</span><h2 id="h-points">夜の水族館を、歩いて解く。</h2></div>
       <div class="points">
-        <div class="pt"><p class="pt-key"><em>閉館</em>後</p><p>お客さんが帰ったあとの、夜の水族館が舞台です。照明の落ちた館内を、自分の足で歩きまわります。</p></div>
-        <div class="pt"><p class="pt-key"><em>展示</em>が鍵</p><p>水槽、解説パネル、生きもののしぐさ。館内にあるものすべてが、謎を解く手がかりになります。</p></div>
-        <div class="pt"><p class="pt-key"><em>スマホ</em>で</p><p>出題も答え合わせも、スマートフォンのWEBページで行います。アプリのインストールや端末の設定変更はいりません。</p></div>
+        <div class="pt">
+          <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 8.5V16l-4.6 3.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <p class="pt-key"><em>閉館</em>後</p>
+          <p>お客さんが帰ったあとの、夜の水族館が舞台です。照明の落ちた館内を、自分の足で歩きまわります。</p>
+        </div>
+        <div class="pt">
+          <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13.5" cy="13.5" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m20 20 8 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M9 14c1.6-2.2 3.4-3.2 5.3-3.2 1.4 0 2.6.6 3.5 1.6-.9 1-2.1 1.6-3.5 1.6-1.9 0-3.7-1-5.3-3.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <p class="pt-key"><em>展示</em>が鍵</p>
+          <p>水槽、解説パネル、生きもののしぐさ。館内にあるものすべてが、謎を解く手がかりになります。</p>
+        </div>
+        <div class="pt">
+          <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="3.5" width="14" height="25" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M14 24.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <p class="pt-key"><em>スマホ</em>で</p>
+          <p>出題も答え合わせも、スマートフォンのWEBページで行います。アプリのインストールや端末の設定変更はいりません。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -377,7 +533,7 @@ html.rm .layer-full{display:block}
     <div class="wrap side">
       <div class="sec-head"><span class="tag">開催概要</span><h2 id="h-outline"><span>日時・会場・</span><span>参加費</span></h2><p class="sec-lead">日程・料金などは、決まりしだいこのページでお知らせします。</p></div>
       <dl class="outline">
-        <dt>イベント名</dt><dd><span class="ev">この水族館、なんか変。</span><span class="ev">─ 閉館後もやっぱり変 ─</span></dd>
+        <dt>イベント名</dt><dd><span class="ev">この水族館、なんか<span class="hen">変</span>。</span><span class="ev">─ 閉館後もやっぱり変 ─</span></dd>
         <dt>開催日</dt><dd><span class="tbd">未定</span></dd>
         <dt>時間</dt><dd><span class="tbd">未定</span> <span class="tent">（閉館後の時間帯）</span></dd>
         <dt>会場</dt><dd><span class="tbd">未定</span></dd>
@@ -394,14 +550,17 @@ html.rm .layer-full{display:block}
 
   <section class="sec" id="flow" aria-labelledby="h-flow">
     <div class="wrap side">
-      <div class="sec-head"><span class="tag">参加の流れ</span><h2 id="h-flow">申し込みから、結末まで。</h2></div>
-      <ol class="flow" id="flowList">
-        <li><span class="fn">1</span><div><h3>申し込む</h3><p>このページの申込フォームから申し込みます。受付期間 <span class="tbd">未定</span></p></div></li>
-        <li><span class="fn">2</span><div><h3>当日、受付へ</h3><p><span class="tbd">集合時間 未定</span> に <span class="tbd">集合場所 未定</span> へお越しください。</p></div></li>
-        <li><span class="fn">3</span><div><h3>閉館後の館内へ</h3><p>照明の落ちた水族館に入ります。ここから先は、なんか変。</p></div></li>
-        <li><span class="fn">4</span><div><h3>謎を解く</h3><p>館内を歩きまわり、手がかりを集めて謎に挑みます。</p></div></li>
-        <li><span class="fn">5</span><div><h3>結末</h3><p>すべての謎が解けたとき、この水族館の「変」の正体が明らかになります。</p></div></li>
-      </ol>
+      <div class="sec-head"><span class="tag">参加の流れ</span><h2 id="h-flow"><span>申し込みから、</span><span>結末まで。</span></h2></div>
+      <div>
+        <div class="route"><span class="route-sign">順路<svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1v17M2 12l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span></div>
+        <ol class="flow" id="flowList">
+          <li><span class="fn">1</span><div><h3>申し込む</h3><p>このページの申込フォームから申し込みます。受付期間 <span class="tbd">未定</span></p></div></li>
+          <li><span class="fn">2</span><div><h3>当日、受付へ</h3><p><span class="tbd">集合時間 未定</span> に <span class="tbd">集合場所 未定</span> へお越しください。</p></div></li>
+          <li><span class="fn">3</span><div><h3>閉館後の館内へ</h3><p>照明の落ちた水族館に入ります。ここから先は、なんか変。</p></div></li>
+          <li><span class="fn">4</span><div><h3>謎を解く</h3><p>館内を歩きまわり、手がかりを集めて謎に挑みます。</p></div></li>
+          <li><span class="fn">5</span><div><h3>結末</h3><p>すべての謎が解けたとき、この水族館の「変」の正体が明らかになります。</p></div></li>
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -420,7 +579,10 @@ html.rm .layer-full{display:block}
 
   <section class="apply" id="apply" aria-labelledby="h-apply">
     <div class="wrap apply-grid">
-      <h2 class="vhead" id="h-apply"><span>出口は、</span><span>謎の先に。</span></h2>
+      <div class="apply-head">
+        <span class="exit-sign" aria-hidden="true">出口<small>EXIT</small><svg viewBox="0 0 18 14"><path d="M1 7h15M10 1.5 16 7l-6 5.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+        <h2 class="vhead" id="h-apply"><span>出口は、</span><span>謎の先に。</span></h2>
+      </div>
       <div class="apply-body">
         <span class="tag">申し込み</span>
         <div class="meta"><p>受付開始　<span class="tbd">未定</span></p><p>定員になりしだい締め切ります <span class="tent">（予定）</span></p></div>
@@ -438,6 +600,7 @@ html.rm .layer-full{display:block}
     <p>このページは企画段階の素案です。掲載している日程・料金・内容はすべて仮のものです。</p>
   </div>
 </footer>
+<canvas id="snow" aria-hidden="true"></canvas>
 
 <script>
 (() => {
@@ -449,15 +612,14 @@ html.rm .layer-full{display:block}
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const sstep = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
   const lerp = (a, b, t) => a + (b - a) * t;
+  const TAU = Math.PI * 2;
 
-  const bar = $('#bar');
-  const dive = $('#top'), stage = $('.stage');
+  const bar = $('#bar'), dive = $('#top'), stage = $('.stage');
 
-  /* ---------- apply button + spit ---------- */
   $('#applyBtn').addEventListener('click', () => { $('#applyNote').hidden = false; });
   $('#spit').addEventListener('click', () => window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }));
 
-  /* ---------- flow path ("道をたどる") ---------- */
+  /* ---------- 順路: the path draws itself ---------- */
   const flow = $('#flowList');
   const NS = 'http://www.w3.org/2000/svg';
   const fsvg = document.createElementNS(NS, 'svg'); fsvg.setAttribute('aria-hidden', 'true');
@@ -465,7 +627,7 @@ html.rm .layer-full{display:block}
   const trl = document.createElementNS(NS, 'path'); trl.setAttribute('class', 'trl');
   fsvg.append(trk, trl); flow.prepend(fsvg);
   const fnodes = [...flow.querySelectorAll('.fn')];
-  let flen = 0, fmarks = [];
+  let flen = 0, fmarks = [], lastFlow = -1;
   function layoutFlow() {
     const fr = flow.getBoundingClientRect();
     const pts = fnodes.map(n => { const r = n.getBoundingClientRect(); return { x: r.left - fr.left + r.width / 2, y: r.top - fr.top + r.height / 2 }; });
@@ -479,21 +641,19 @@ html.rm .layer-full{display:block}
     flen = trl.getTotalLength();
     trl.style.strokeDasharray = flen;
     fmarks = pts.map(p => { let lo = 0, hi = flen; for (let k = 0; k < 22; k++) { const m = (lo + hi) / 2; trl.getPointAtLength(m).y < p.y ? lo = m : hi = m; } return lo; });
-    updateFlow(true);
+    lastFlow = -1; updateFlow();
   }
-  let lastFlow = -1;
-  function updateFlow(force) {
+  function updateFlow() {
     const r = flow.getBoundingClientRect();
-    const vh = innerHeight;
-    const prog = RM ? 1 : clamp((vh * .62 - r.top - 18) / Math.max(1, r.height - 36));
-    if (!force && Math.abs(prog - lastFlow) < .0005) return;
+    const prog = RM ? 1 : clamp((innerHeight * .62 - r.top - 18) / Math.max(1, r.height - 36));
+    if (Math.abs(prog - lastFlow) < .0005) return;
     lastFlow = prog;
     const L = prog * flen;
     trl.style.strokeDashoffset = flen - L;
     fnodes.forEach((n, i) => n.classList.toggle('on', L >= fmarks[i] - 1));
   }
 
-  /* ---------- torch ("指が懐中電灯") ---------- */
+  /* ---------- 懐中電灯 ---------- */
   const torch = $('#torch');
   let tx = .5, ty = .45, cx = .5, cy = .45, manual = -1e9, torchOn = false, litT = 0, eyeCool = 0;
   const setLight = (X, Y) => { const r = torch.getBoundingClientRect(); tx = clamp((X - r.left) / r.width, -.1, 1.1); ty = clamp((Y - r.top) / r.height, -.1, 1.1); manual = performance.now(); };
@@ -515,58 +675,65 @@ html.rm .layer-full{display:block}
   }
   new IntersectionObserver(es => es.forEach(e => torchOn = e.isIntersecting), { rootMargin: '80px' }).observe(torch);
 
-  /* ---------- header state ---------- */
   let diveTop = 0, diveLen = 1, vw = 0, vh = 0;
   function updateBar() { bar.classList.toggle('in', scrollY > diveTop + diveLen + vh * .02 - 1); }
 
   if (RM) {
-    const onScroll = () => { updateBar(); };
     const relayout = () => { vh = innerHeight; diveTop = dive.offsetTop; diveLen = Math.max(1, dive.offsetHeight - vh); layoutFlow(); updateBar(); };
-    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('scroll', () => { updateBar(); updateFlow(); }, { passive: true });
     addEventListener('resize', relayout);
     addEventListener('load', relayout);
-    relayout(); updateTorch(0, 1);
-    torch.style.setProperty('--x', '62%'); torch.style.setProperty('--y', '30%');
+    relayout();
+    torch.style.setProperty('--x', '50%'); torch.style.setProperty('--y', '26%');
     return;
   }
 
   /* ---------- the dive ---------- */
-  const W = 1054, H = 1492, O = { x: 725, y: 780 };          // zoom origin: the darkest point of the throat
-  const fishEl = $('.fish'), breath = $('.fish-breath');
-  const inner = $('.layer-inner'), outer = $('#outer');
-  const shade = $('.shade'), veil = $('.veil'), cue = $('.cue');
+  const W = 1054, H = 1492, O = { x: 549, y: 755 };           // the centre of the open mouth
+  const rigA = $('#rigA'), rigT = $('#rigT'), breath = $('#breath');
+  const inner = $('.layer-inner'), outer = $('#outer'), txA = $('#txA');
+  const eyes = $('#eyes'), logo = $('#logo'), impact = $('#impact');
+  const layers = [...document.querySelectorAll('html.js .layer')];
+  const shade = $('.shade'), cue = $('#cue'), cue2 = $('#cue2');
   const phrases = [...document.querySelectorAll('.ph')];
   const cv = $('#fx'), ctx = cv.getContext('2d');
-  let base = 1, Ps = { x: 0, y: 0 }, C = { x: 0, y: 0 }, F = 1, dpr = 1, stageOn = true;
+  let base = 1, fx0 = 0, fy0 = 0, P = { x: 0, y: 0 }, C = { x: 0, y: 0 }, F = 1, dpr = 1, stageOn = true;
 
-  const LNO = Math.log(14), LNI = Math.log(10);              // outer face rushes past faster than the throat: parallax
-  const Z0 = .03, Z1 = .58, DZ = 3.2, DT = 7.2;
-  const PZ = [5.6, 7.6, 9.6];                                 // world depth of the three phrases
-  function cam(p) {
-    const u = clamp((p - Z0) / (Z1 - Z0)), ue = Math.pow(u, 1.3);
-    return p <= Z1 ? { ue, D: ue * DZ } : { ue: 1, D: DZ + (p - Z1) / (1 - Z1) * DT };
+  // timeline (fraction of the dive)
+  const Z0 = .015, Z1 = .20;                                  // straight into the mouth
+  const LNO = Math.log(16), LNI = Math.log(11), LNT = Math.log(3.2);
+  const DZ = 3.2, DT = 7.0, T1 = .76;                          // throat travel
+  const GAP = 2.0, PZ0 = 5.825, PZ = [PZ0, PZ0 + GAP, PZ0 + 2 * GAP], STAIR = .72;
+  const EYES_AT = .765, EYES_RESET = .745, LOGO_AT = .87, LOGO_RESET = .845;
+
+  function depth(p) {
+    if (p <= Z1) { const u = clamp((p - Z0) / (Z1 - Z0)), ue = Math.pow(u, 1.3); return { ue, D: ue * DZ }; }
+    const lin = DZ + (p - Z1) / (T1 - Z1) * DT;
+    const x = (lin - (PZ0 - 1)) / GAP;                          // each phrase lingers at arm's length
+    const st = (PZ0 - 1) + GAP * (x - STAIR / TAU * Math.sin(TAU * x));
+    return { ue: 1, D: lerp(lin, st, sstep(Z1, Z1 + .05, p)) };
   }
-  const tube = z => [.34 * Math.sin(z * .42 + .3), .24 * Math.sin(z * .31 + 1.1)];
+  const tube = z => [.16 * Math.sin(z * .42 + .3), .11 * Math.sin(z * .31 + 1.1)];
   const rnd = i => { const v = Math.sin(i * 127.1 + 311.7) * 43758.5453; return v - Math.floor(v); };
-  const TAU = Math.PI * 2;
 
   function layout() {
     vw = stage.clientWidth; vh = stage.clientHeight;
     base = Math.min(vh * .94 / H, vw / (.82 * W));
-    const fw = W * base, fh = H * base, fx = (vw - fw) / 2, fy = (vh - fh) / 2;
-    Ps = { x: fx + O.x * base, y: fy + O.y * base }; C = { x: vw / 2, y: vh / 2 };
-    for (const l of [inner, outer]) { l.style.width = fw + 'px'; l.style.height = fh + 'px'; }
-    breath.style.setProperty('--ox', Ps.x + 'px'); breath.style.setProperty('--oy', Ps.y + 'px');
+    const fw = W * base, fh = H * base;
+    fx0 = vw / 2 - O.x * base; fy0 = (vh - fh) / 2;
+    P = { x: fx0 + O.x * base, y: fy0 + O.y * base }; C = { x: vw / 2, y: vh / 2 };
+    for (const l of layers) { l.style.width = fw + 'px'; l.style.height = fh + 'px'; }
+    breath.style.setProperty('--ox', P.x + 'px'); breath.style.setProperty('--oy', P.y + 'px');
     F = Math.min(vw, vh) * .5;
     dpr = Math.min(window.devicePixelRatio || 1, 1.75);
     cv.width = Math.round(vw * dpr); cv.height = Math.round(vh * dpr);
     diveTop = dive.offsetTop; diveLen = Math.max(1, dive.offsetHeight - vh);
-    seed();
-    layoutFlow();
+    seed(); layoutSnow(); layoutFlow();
     lastP = -1;
   }
+  const at = (s) => `translate3d(${P.x - O.x * base * s}px,${P.y - O.y * base * s}px,0) scale(${s})`;
 
-  /* particles: bubbles in front of the fish, flesh specks in the throat — one 3D field the camera flies through */
+  /* particles: bubbles in front of the fish, specks in the throat */
   let parts = [];
   function seed() {
     const n = vw < 700 ? 34 : 62;
@@ -586,12 +753,12 @@ html.rm .layer-full{display:block}
     const gap = .5, z0 = 3.1, near = .2, far = 7.4, seg = 60;
     const i0 = Math.max(0, Math.ceil((D + near - z0) / gap)), i1 = Math.floor((D + far - z0) / gap);
     const [cox, coy] = tube(D);
+    const wob = (th, p1, p2, p3) => 1 + .06 * Math.sin(2 * th + p1) + .04 * Math.sin(3 * th + p2 + t * .3) + .022 * Math.sin(5 * th + p3);
     const edge = (r, p1, p2, p3, rev) => {
       for (let s = 0; s <= seg; s++) {
-        const th = (rev ? seg - s : s) / seg * TAU;
-        const w = 1 + .06 * Math.sin(2 * th + p1) + .04 * Math.sin(3 * th + p2 + t * .3) + .022 * Math.sin(5 * th + p3);
+        const th = (rev ? seg - s : s) / seg * TAU, w = wob(th, p1, p2, p3);
         const x = Math.cos(th) * r * w, y = Math.sin(th) * r * w;
-        s ? ctx.lineTo(x, y) : (rev ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
+        s || rev ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
     };
     for (let i = i1; i >= i0; i--) {
@@ -607,7 +774,6 @@ html.rm .layer-full{display:block}
       ctx.translate(V.x + (ox - cox) * k, V.y + (oy - coy) * k);
       ctx.rotate((rnd(i + 21) - .5) * .5);
       ctx.scale(1, 1.12);
-      // one fold: wet ridge facing the camera, flesh body, falling away into the dark valley
       const ri = r * .8, ro = r * 1.24;
       const gr = ctx.createRadialGradient(0, 0, ri, 0, 0, ro);
       const R = lerp(18, 124, lit) | 0, G = lerp(4, 30, lit) | 0, B = lerp(9, 50, lit) | 0;
@@ -619,7 +785,6 @@ html.rm .layer-full{display:block}
       gr.addColorStop(1, 'rgba(4,1,2,0)');
       ctx.beginPath(); edge(ro, p1, p2, p3, false); edge(ri, p1, p2, p3, true); ctx.closePath();
       ctx.fillStyle = gr; ctx.fill();
-      // a couple of wet glints along the ridge
       if (lit > .05) {
         ctx.lineCap = 'round';
         ctx.strokeStyle = `rgba(255,236,232,${(.5 * lit * fade).toFixed(3)})`;
@@ -628,8 +793,7 @@ html.rm .layer-full{display:block}
           const c = rnd(i * 3 + j) * TAU, span = .25 + rnd(i * 5 + j) * .45;
           ctx.beginPath();
           for (let q = 0; q <= 10; q++) {
-            const th = c + span * q / 10;
-            const w = 1 + .06 * Math.sin(2 * th + p1) + .04 * Math.sin(3 * th + p2 + t * .3) + .022 * Math.sin(5 * th + p3);
+            const th = c + span * q / 10, w = wob(th, p1, p2, p3);
             const x = Math.cos(th) * ri * 1.05 * w, y = Math.sin(th) * ri * 1.05 * w;
             q ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
           }
@@ -641,7 +805,24 @@ html.rm .layer-full{display:block}
     ctx.restore();
   }
 
-  function drawParts(D, dt, tA, V) {
+  /* while the lips are still on screen, the throat only shows through the open mouth */
+  const HOLE = { x: 549.5, y: 760, rx: 320 * .9, ry: 427 * .88 };
+  function mouthMask(so) {
+    const ex = P.x + (HOLE.x - O.x) * base * so, ey = P.y + (HOLE.y - O.y) * base * so;
+    const rx = HOLE.rx * base * so, ry = HOLE.ry * base * so;
+    if (rx > vw * 1.6 && ry > vh * 1.6) return;
+    ctx.save();
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.translate(ex, ey); ctx.scale(rx, ry);
+    const g = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+    g.addColorStop(0, '#000'); g.addColorStop(.72, '#000'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(-1e4 / rx, -1e4 / ry, 2e4 / rx, 2e4 / ry);
+    ctx.restore();
+  }
+
+  function drawParts(D, dt, tA, V, amt) {
+    if (amt < .01) return;
     const span = 7.8, near = .22;
     for (const p of parts) {
       let zr = p.z - D;
@@ -652,68 +833,119 @@ html.rm .layer-full{display:block}
       p.y -= dt * p.vy * (1 - tA * .75);
       if (p.y < -1.9) { p.y += 3.8; p.has = false; }
       const k = F / zr, sx = V.x + p.x * k, sy = V.y + p.y * k, rad = Math.max(.7, p.r * k);
-      const a = sstep(near, .75, zr) * (1 - sstep(4.6, 8, zr));
+      const a = sstep(near, .75, zr) * (1 - sstep(4.6, 8, zr)) * amt;
       if (sx < -80 || sx > vw + 80 || sy < -80 || sy > vh + 80 || a < .01) { p.has = false; continue; }
       if (p.has) {
-        const dx = sx - p.px, dy = sy - p.py;
-        const d2 = dx * dx + dy * dy;
+        const dx = sx - p.px, dy = sy - p.py, d2 = dx * dx + dy * dy;
         if (d2 > 20 && d2 < 22000) {
           ctx.strokeStyle = `rgba(${lerp(210, 245, tA) | 0},${lerp(232, 180, tA) | 0},${lerp(255, 182, tA) | 0},${.28 * a})`;
           ctx.lineWidth = Math.max(.6, rad * .9); ctx.lineCap = 'round';
           ctx.beginPath(); ctx.moveTo(p.px, p.py); ctx.lineTo(sx, sy); ctx.stroke();
         }
       }
-      if (tA < .99) { // bubble
+      if (tA < .99) {
         const b = a * (1 - tA);
-        ctx.beginPath(); ctx.arc(sx, sy, rad, 0, Math.PI * 2);
+        ctx.beginPath(); ctx.arc(sx, sy, rad, 0, TAU);
         ctx.fillStyle = `rgba(210,235,255,${.05 * b})`; ctx.fill();
         ctx.lineWidth = Math.max(.6, rad * .13); ctx.strokeStyle = `rgba(220,240,255,${.42 * b})`; ctx.stroke();
-        ctx.beginPath(); ctx.arc(sx - rad * .36, sy - rad * .36, rad * .22, 0, Math.PI * 2);
+        ctx.beginPath(); ctx.arc(sx - rad * .36, sy - rad * .36, rad * .22, 0, TAU);
         ctx.fillStyle = `rgba(255,255,255,${.6 * b})`; ctx.fill();
       }
-      if (tA > .01) { // speck
-        ctx.beginPath(); ctx.arc(sx, sy, rad * .55, 0, Math.PI * 2);
+      if (tA > .01) {
+        ctx.beginPath(); ctx.arc(sx, sy, rad * .55, 0, TAU);
         ctx.fillStyle = `rgba(245,184,186,${.45 * a * tA})`; ctx.fill();
       }
       p.px = sx; p.py = sy; p.has = true;
     }
   }
 
+  /* the eyes in the dark, then the logo */
+  let awake = false, slammed = false;
+  const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
+  function setStates(p, initial) {
+    if (p >= EYES_AT && !awake) { awake = true; eyes.classList.add('awake'); }
+    else if (p < EYES_RESET && awake) { awake = false; eyes.classList.remove('awake', 'gone'); }
+    if (p >= LOGO_AT && !slammed) {
+      slammed = true; eyes.classList.add('gone');
+      if (initial) logo.classList.add('shown');
+      else { logo.classList.remove('shown'); restart(logo, 'slam'); restart(impact, 'on'); }
+    } else if (p < LOGO_RESET && slammed) {
+      slammed = false; logo.classList.remove('slam', 'shown'); impact.classList.remove('on'); eyes.classList.remove('gone');
+    }
+  }
+
   function doBlink() { outer.classList.remove('blink'); void outer.offsetWidth; outer.classList.add('blink'); }
 
-  let lastP = -1, lastT = 0, nextBlink = performance.now() + 4200;
+  /* marine snow, in the belly */
+  const snow = $('#snow'), sctx = snow.getContext('2d');
+  let flakes = [], sw = 0, sh = 0, snowClear = false;
+  function layoutSnow() {
+    sw = innerWidth; sh = innerHeight;
+    snow.width = Math.round(sw * dpr); snow.height = Math.round(sh * dpr);
+    const n = sw < 700 ? 26 : 46;
+    flakes = Array.from({ length: n }, () => ({ x: Math.random() * sw, y: Math.random() * sh, r: .5 + Math.pow(Math.random(), 3) * 1.9, z: .3 + Math.random() * .7, ph: Math.random() * TAU, a: .08 + Math.random() * .22 }));
+  }
+  function drawSnow(dt, t) {
+    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    sctx.clearRect(0, 0, sw, sh);
+    const sy = scrollY;
+    for (const f of flakes) {
+      f.y += dt * (5 + 9 * f.z);
+      const x = f.x + Math.sin(t * .35 + f.ph) * 9 * f.z;
+      const span = sh + 24;
+      const y = ((f.y - sy * .07 * f.z) % span + span) % span - 12;
+      sctx.beginPath(); sctx.arc(x, y, f.r * f.z + .3, 0, TAU);
+      sctx.fillStyle = `rgba(242,201,196,${f.a})`; sctx.fill();
+    }
+  }
+
+  let lastP = -1, lastT = 0, nextBlink = performance.now() + 4200, first = true;
   function frame(now) {
     const dt = Math.min(.05, (now - lastT) / 1000 || .016); lastT = now;
     const t = now / 1000;
     const p = clamp((scrollY - diveTop) / diveLen);
 
     if (stageOn) {
-      const { ue, D } = cam(p);
-      const sh = sstep(0, .55, ue);
-      const V = { x: lerp(Ps.x, C.x, sh), y: lerp(Ps.y, C.y, sh) };
-      const tA = sstep(.46, .6, p);
-      const imgA = 1 - sstep(.5, .62, p);
+      if (snowClear === false) { sctx.setTransform(1, 0, 0, 1, 0, 0); sctx.clearRect(0, 0, snow.width, snow.height); snowClear = true; }
+      const { ue, D } = depth(p);
+      const sh2 = sstep(0, .55, ue);
+      const V = { x: lerp(P.x, C.x, sh2), y: lerp(P.y, C.y, sh2) };
+      const tA = sstep(.03, .13, p) * (1 - sstep(.70, .76, p));
+      const imgA = 1 - sstep(.13, .21, p);
+      const so = Math.exp(ue * LNO);
 
       if (p !== lastP) {
-        const so = Math.exp(ue * LNO), si = Math.exp(ue * LNI);
-        inner.style.transform = `translate3d(${V.x - O.x * base * si}px,${V.y - O.y * base * si}px,0) scale(${si})`;
-        outer.style.transform = `translate3d(${V.x - O.x * base * so}px,${V.y - O.y * base * so}px,0) scale(${so})`;
-        fishEl.style.opacity = imgA;
-        fishEl.style.visibility = imgA <= 0 ? 'hidden' : 'visible';
-        shade.style.opacity = (sstep(0, .7, ue) * .95 * (1 - tA * .6)).toFixed(3);
-        shade.style.setProperty('--vx', (V.x / vw * 100).toFixed(1) + '%');
-        shade.style.setProperty('--vy', (V.y / vh * 100).toFixed(1) + '%');
-        veil.style.opacity = sstep(.88, .995, p).toFixed(3);
-        cue.style.opacity = (1 - sstep(.004, .045, p)).toFixed(3);
+        // straight in: everything scales about the mouth's centre
+        inner.style.transform = at(Math.exp(ue * LNI));
+        outer.style.transform = at(so);
+        const tp = sstep(.004, .11, p);
+        txA.style.transform = at(so * (1 + tp * 1.6));
+        const txo = 1 - sstep(.012, .09, p);
+        txA.style.opacity = txo.toFixed(3);
+        txA.style.visibility = txo <= 0 ? 'hidden' : 'visible';
+        rigA.style.opacity = imgA;
+        rigA.style.visibility = imgA <= 0 ? 'hidden' : 'visible';
+        rigT.style.visibility = imgA <= 0 ? 'hidden' : 'visible';
+        shade.style.opacity = (sstep(0, .7, ue) * .95 * (1 - tA * .6) * imgA).toFixed(3);
+        cue.style.opacity = (1 - sstep(.004, .04, p)).toFixed(3);
+        cue2.style.opacity = sstep(.955, .975, p).toFixed(3);
+
         const [cox, coy] = tube(D);
         phrases.forEach((el, i) => {
           const zr = PZ[i] - D;
-          if (zr <= .3 || zr > 3.2 || tA < .02) { el.style.opacity = 0; return; }
+          if (zr <= .3 || zr > 3.4 || tA < .02) { el.style.opacity = 0; return; }
           const s = 1 / zr, k = F / zr, [ox, oy] = tube(PZ[i]);
-          const a = sstep(.42, .72, s) * (1 - sstep(1.5, 2.3, s)) * tA;
+          const a = sstep(.38, .62, s) * (1 - sstep(1.65, 2.4, s)) * tA;
           el.style.opacity = a.toFixed(3);
           el.style.transform = `translate3d(${V.x + (ox - cox) * k}px,${V.y + (oy - coy) * k}px,0) translate(-50%,-50%) scale(${s.toFixed(4)})`;
         });
+
+        // the dark: the eyes drift a little closer while they look around
+        const eA = sstep(.755, .78, p);
+        eyes.style.opacity = eA.toFixed(3);
+        eyes.style.visibility = eA <= 0 ? 'hidden' : 'visible';
+        eyes.style.transform = `translate(-50%,-50%) scale(${lerp(.86, 1.06, sstep(.755, .87, p)).toFixed(4)})`;
+        setStates(p, first);
         updateBar();
         lastP = p;
       }
@@ -721,12 +953,18 @@ html.rm .layer-full{display:block}
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, vw, vh);
       drawTunnel(D, t, tA, V);
-      if (veil.style.opacity < 1) drawParts(D, dt, tA, V);
+      mouthMask(so);
+      drawParts(D, dt, tA, V, 1 - sstep(.69, .755, p));
 
-      if (now > nextBlink) { if (ue < .2 && imgA > .95) doBlink(); nextBlink = now + 6500 + Math.random() * 6000; }
+      if (now > nextBlink) { if (ue < .2 && imgA > .95 && p < .01) doBlink(); nextBlink = now + 6500 + Math.random() * 6000; }
+    } else {
+      snowClear = false;
+      drawSnow(dt, t);
+      if (p !== lastP) { setStates(p, false); lastP = p; }
     }
 
-    updateFlow(false);
+    first = false;
+    updateFlow();
     updateTorch(now, dt);
     requestAnimationFrame(frame);
   }
