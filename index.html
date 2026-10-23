@@ -333,13 +333,17 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;padding:14px 0;font:700 16.5px/1.7 var(--f-display);letter-spacing:.06em}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::before{content:"Q";font:800 15px/1 var(--f-display);color:var(--flesh);flex:none;width:1.4em}
-.faq summary span{flex:1;min-width:0}
+.faq summary span{flex:1;min-width:0;word-break:auto-phrase;text-wrap:pretty}
 .faq summary::after{content:"";width:12px;height:12px;flex:none;margin-right:4px;
   background:linear-gradient(var(--text),var(--text)) center/12px 1.5px no-repeat,linear-gradient(var(--text),var(--text)) center/1.5px 12px no-repeat;transition:transform .3s}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq .ans{padding:0 0 22px 1.4em;color:var(--muted);font-size:15px;margin-left:18px}
 .faq .ans strong{color:var(--text);font-weight:700}
 .faq .ans small{display:block;margin-top:8px;font-size:13px;letter-spacing:.06em}
+.mail{display:block;margin-top:4px}
+.mail a{color:var(--text);text-underline-offset:3px;word-break:break-all}
+.foot .mail{display:inline;margin:0}
+.soon{display:inline-block;font:700 .8em/1.6 var(--f-body);color:var(--gold);border:1px solid rgba(236,184,79,.5);border-radius:3px;padding:0 .6em;letter-spacing:.1em;white-space:nowrap}
 
 /* apply */
 .apply{padding-block:clamp(100px,14vw,170px) clamp(64px,9vw,100px);overflow:hidden;border-top:1px solid var(--line)}
@@ -363,6 +367,7 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 .buy dd{font:700 16px/1.6 var(--f-display);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .buy small{display:block;font:500 12px/1.6 var(--f-body);color:var(--muted);letter-spacing:.1em}
 .buy-note{font-size:13px;color:var(--muted);letter-spacing:.08em}
+.buy-go{font-size:12.5px;color:var(--muted);letter-spacing:.08em;margin-top:-10px}
 .btn-paper.big{min-height:64px;font-size:21px;padding:0 40px 0 46px}
 .apply-note{font-size:13px;color:var(--flesh);border-left:1px solid var(--line-strong);padding-left:12px;max-width:30em}
 .spit{position:relative;margin:clamp(80px,12vw,130px) auto 0;display:flex;flex-direction:column;align-items:center;gap:12px;background:none;border:0;color:var(--text);cursor:pointer;
@@ -663,7 +668,7 @@ html.rm .backyard .by-reveal{display:none}
   <section class="arrival" id="arrival" aria-labelledby="h-arrival">
     <div class="wrap arrival-grid">
       <div class="arrival-copy">
-        <p class="eyebrow"><span>竹島水族館</span><span class="sep" aria-hidden="true"></span><span>謎解きイベント 参加者募集</span><span class="tbd">チケット販売開始日 未定</span></p>
+        <p class="eyebrow"><span>竹島水族館</span><span class="sep" aria-hidden="true"></span><span>謎解きイベント 参加者募集</span><span class="soon">11月上旬 チケット販売開始</span></p>
         <h2 class="lead" id="h-arrival">閉館後の水族館で、<br>謎を解く。</h2>
         <p class="body">お客さんが帰り、照明の落ちた竹島水族館を、この夜は参加者だけの貸切に。館内を歩きまわって展示に隠された手がかりを集め、この水族館の「変」の正体をつきとめる謎解きイベントです。</p>
         <div class="actions">
@@ -681,7 +686,7 @@ html.rm .backyard .by-reveal{display:none}
               <div><dt>開催日 2027</dt><dd><span class="ln">1月16日（土）</span><span class="ln">1月23日（土）</span><span class="ln">1月30日（土）</span></dd></div>
               <div><dt>時間</dt><dd><span class="ln">17:30〜19:30</span><small class="ln0">受付 16:45〜</small></dd></div>
               <div><dt>会場</dt><dd><span class="ln">竹島水族館</span><small class="ln0">愛知県蒲郡市</small></dd></div>
-              <div><dt>参加費</dt><dd><span class="ln">2,900<small class="yen">円</small></span><small class="ln0">1名</small></dd></div>
+              <div><dt>参加費</dt><dd><span class="ln">2,900<small class="yen">円</small></span><small class="ln0">1名・小学生以上</small></dd></div>
             </dl>
           </div>
           <div class="tk-stub" aria-hidden="true"><span class="tk-stub-t">入館証</span><span class="tk-stamp">変</span></div>
@@ -767,19 +772,22 @@ html.rm .backyard .by-reveal{display:none}
 
   <section class="sec" id="outline" aria-labelledby="h-outline">
     <div class="wrap side">
-      <div class="sec-head"><span class="tag">開催概要</span><h2 id="h-outline"><span>日時・会場・</span><span>参加費</span></h2><p class="sec-lead">まだ決まっていない項目は、決まりしだいこのページでお知らせします。</p></div>
+      <div class="sec-head"><span class="tag">開催概要</span><h2 id="h-outline"><span>日時・会場・</span><span>参加費</span></h2><p class="sec-lead">チケットは11月上旬に販売開始予定です。</p></div>
       <dl class="outline">
         <dt>イベント名</dt><dd><span class="ev">この水族館、なんか<span class="hen">変</span>。</span><span class="ev">─ 閉館後もやっぱり変 ─</span></dd>
         <dt>開催日</dt><dd><span class="big-dd">2027年1月16日（土）</span><span class="big-dd">2027年1月23日（土）</span><span class="big-dd">2027年1月30日（土）</span></dd>
         <dt>時間</dt><dd>17:30〜19:30<span class="sub">受付 16:45〜17:20</span></dd>
         <dt>会場</dt><dd>竹島水族館<span class="sub">愛知県蒲郡市</span></dd>
-        <dt>参加費</dt><dd>2,900円（1名）<span class="sub">子ども料金の設定はありません</span></dd>
+        <dt>参加費</dt><dd>2,900円（1名・1人1キット）<span class="sub">小学生以上は大人と同じ料金です。未就学児は無料（キットはつきません）。</span></dd>
         <dt>定員</dt><dd>各日 定員制・先着順<span class="sub">定員になりしだい販売終了</span></dd>
         <dt>所要時間</dt><dd>約2時間<span class="sub">説明・謎解き・答え合わせ・自由見学</span></dd>
-        <dt>対象</dt><dd>どなたでも参加できます<span class="sub">小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は大人がじっくり楽しめる難しさです。</span></dd>
+        <dt>対象</dt><dd>どなたでも参加できます<span class="sub">小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は、大人がじっくり頭をひねる難しさです。</span></dd>
         <dt>持ち物</dt><dd>スマートフォン（必須）<span class="sub">バインダーがあると便利です。通信料はお客さまのご負担となります。</span></dd>
-        <dt>申込方法</dt><dd>チケット販売サイトから <span class="tbd">販売ページ準備中</span></dd>
+        <dt>申込方法</dt><dd>チケット販売サイトから<span class="sub">11月上旬 販売開始予定</span></dd>
+        <dt>キャンセル</dt><dd>お客さま都合のキャンセル・払い戻しはできません<span class="sub">主催者の都合で中止する場合は払い戻します</span></dd>
+        <dt>アクセス</dt><dd>JR蒲郡駅（南口）から徒歩約15分<span class="sub">水族館の近くに無料駐車場があります（日によっては有料の場合あり）</span></dd>
         <dt>主催</dt><dd>株式会社ウィーケン × 竹島水族館</dd>
+        <dt>お問い合わせ</dt><dd>株式会社ウィーケン<span class="mail" data-mail><span class="tbd">メールアドレス 準備中</span></span></dd>
       </dl>
     </div>
   </section>
@@ -827,17 +835,24 @@ html.rm .backyard .by-reveal{display:none}
 
   <section class="sec" id="faq" aria-labelledby="h-faq">
     <div class="wrap side">
-      <div class="sec-head"><span class="tag">よくある質問</span><h2 id="h-faq">参加の前に。</h2></div>
-      <div class="faq">
-        <details><summary><span>ひとりでも参加できますか？</span></summary><p class="ans">もちろん参加できます。閉館後スタッフは、ひとりでも務まります。チケットは1名から購入できます。</p></details>
-        <details><summary><span>謎解きがはじめてでも楽しめますか？</span></summary><p class="ans">楽しめます。謎は手ごたえのある難しさですが、終礼で答えと解説があります。解けても解けなくても、閉館後の竹島水族館を貸切で歩けるのは、この夜だけです。</p></details>
-        <details><summary><span>子どもも参加できますか？</span></summary><p class="ans">参加できます。小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は大人がじっくり楽しめる難しさなので、大人といっしょに解くのがおすすめです。</p></details>
-        <details><summary><span>子どもの料金はありますか？</span></summary><p class="ans">子ども料金の設定はありません。参加費は1名2,900円です。</p></details>
-        <details><summary><span>何時に行けばいいですか？</span></summary><p class="ans">16:45〜17:20に受付をすませてください。17:30から閉館作業の説明がはじまります。</p></details>
-        <details><summary><span>遅れてしまったら、参加できますか？</span></summary><p class="ans"><strong>受付時間（16:45〜17:20）を過ぎると、参加できません。</strong>17:30から閉館作業の説明がはじまるため、途中から加わることはできません。時間に余裕をもってお越しください。</p></details>
-        <details><summary><span>当日は何を持っていけばいいですか？</span></summary><p class="ans"><strong>スマートフォンは必須です。</strong>謎の出題や答え合わせに使うので、充電は満タンにしてお越しください。<br>あわせて、バインダーがあると便利です。館内を歩きながら、立ったままでも書きこめます（必須ではありません）。<small>※ 謎解き中はスマートフォンでWEBページを使います。通信料はお客さまのご負担となります。</small></p></details>
-        <details><summary><span>途中で帰ることはできますか？</span></summary><p class="ans">途中退館はできますが、おすすめしません。途中で退館された場合も参加費の返金はできません。また、閉館作業を最後まで終えられず、謎の結末にたどり着けない可能性があります。</p></details>
-        <details><summary><span>謎解きのあと、水族館は見られますか？</span></summary><p class="ans">19:00〜19:30は「居残り見学」の時間です。閉館後の水族館を自由に見てまわれます。</p></details>
+      <div class="sec-head"><span class="tag">よくある質問</span><h2 id="h-faq">出勤の前に。</h2><p class="sec-lead">閉館後スタッフとして来てくださる前に、よく聞かれることをまとめました。</p></div>
+      <div class="faq" lang="ja">
+        <details><summary><span>ひとりでも、友だちといっしょでも参加できますか？</span></summary><p class="ans">どちらでも大丈夫です。キットは<strong>1人1つ</strong>で、チームを組む必要はありません。ひとりで黙々と見回るのも、友だちや家族と「ここ、なんか変じゃない？」と相談しながら進めるのも自由です。</p></details>
+        <details><summary><span>「閉館後スタッフ」って、何をするんですか？</span></summary><p class="ans"><strong>本当の仕事はありません。</strong>この夜のみなさんは、物語のなかの「閉館後スタッフ」として館内に入り、「閉館作業」という名の謎解きに取りかかります。水槽の掃除やエサやりをお願いすることはないので、ご安心ください。</p></details>
+        <details><summary><span>謎解きがはじめてでも楽しめますか？</span></summary><p class="ans">楽しめます。謎は手ごたえのある難しさですが、終礼で答えと解説があります。解けても解けなくても、閉館後の竹島水族館を貸切で歩けるのは、この3日間の夜だけです。</p></details>
+        <details><summary><span>前作に参加していなくても楽しめますか？</span></summary><p class="ans">楽しめます。前作「この水族館、なんか変。」に参加していなくても、まったく問題ありません。閉館後からの“新入りスタッフ”も大歓迎です。</p></details>
+        <details><summary><span>3日間とも同じ内容ですか？</span></summary><p class="ans">3日とも同じ閉館作業です。それでもよければ、何度でも出勤してください。よろこんでお待ちしています。</p></details>
+        <details><summary><span>夜の水族館って、こわくないですか？</span></summary><p class="ans"><strong>おどかし役のスタッフや、急に飛び出してくる仕掛けはありません。</strong>閉館後の静かな館内で、「なんか変」なところを探して謎を解いていくイベントです。ガラスの向こうからこちらを見ているのは、たぶん、いつもの魚たちです。</p></details>
+        <details><summary><span>子どもも参加できますか？ 料金は？</span></summary><p class="ans">参加できます。<strong>小学生以上は有料（1名2,900円・1人1キット）、未就学児は無料</strong>です（キットはつきません）。小学生も、大人と同じ料金です。<br>小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は大人がじっくり楽しめる難しさなので、大人とペアで解くのがおすすめです。照明を落とした館内なので、閉館作業のあいだは、お子さまのそばを離れないでください。</p></details>
+        <details><summary><span>受付は何時ですか？ 遅れてしまったら？</span></summary><p class="ans">受付は<strong>16:45〜17:20</strong>です。17:30から閉館作業の説明がはじまるため、<strong>受付時間を過ぎると参加できません。</strong>閉館の時間は待ってくれないので、余裕をもってお越しください。</p></details>
+        <details><summary><span>当日は何を持っていけばいいですか？</span></summary><p class="ans"><strong>スマートフォンは必須です。</strong>出題も答え合わせもスマートフォンで行う、閉館作業のいちばん大事な道具です。充電は満タンにしてお越しください。<br>あわせて、バインダーがあると便利です。館内を歩きながら、立ったままでも書きこめます（必須ではありません）。<small>※ 謎解き中はスマートフォンでWEBページを使います。通信料はお客さまのご負担となります。</small></p></details>
+        <details><summary><span>写真を撮ったり、SNSに投稿したりできますか？</span></summary><p class="ans">撮影も、SNSへの投稿も大歓迎です。<strong>ただし、謎の内容や答え、物語の結末がわかる写真や書きこみは固くお断りします。</strong>この夜に見つけた「変」は、まだ来ていない人のために、そっと胸にしまっておいてください。<small>投稿するときは #この水族館なんか変 をつけてもらえるとうれしいです。ほかの参加者の方が写りこまないよう、ご配慮ください。</small></p></details>
+        <details><summary><span>閉館作業の途中で、早退できますか？</span></summary><p class="ans">早退はできますが、おすすめしません。途中で退館された場合も、参加費は返金できません。また、閉館作業を最後まで終えられず、謎の結末にたどり着けないかもしれません。</p></details>
+        <details><summary><span>閉館作業が終わったら、すぐ帰らないといけませんか？</span></summary><p class="ans">終礼のあとは<strong>「居残り見学」</strong>の時間です。19:30の消灯まで、閉館後の水族館を自由に見てまわれます。消灯で、閉館後スタッフは全員退勤。そのまま泊まっていけるのは、魚たちだけです。</p></details>
+        <details><summary><span>雨の日も開催しますか？</span></summary><p class="ans">閉館作業の舞台は館内なので、<strong>雨でも開催します。</strong>台風など、どうしても開催できないときは、このページでお知らせし、参加費を払い戻します。</p></details>
+        <details><summary><span>キャンセルや払い戻しはできますか？</span></summary><p class="ans">お客さまのご都合によるキャンセル・払い戻しはできません。主催者の都合で開催を中止する場合は、参加費を払い戻します。</p></details>
+        <details><summary><span>車で行けますか？</span></summary><p class="ans">水族館の近くに無料駐車場があります（日によっては有料になる場合があります）。電車なら、JR蒲郡駅（南口）から徒歩約15分です。</p></details>
+        <details><summary><span>そのほかの問い合わせはどこへ？</span></summary><p class="ans">株式会社ウィーケンまで、メールでお問い合わせください。<span class="mail" data-mail><span class="tbd">メールアドレス 準備中</span></span></p></details>
       </div>
     </div>
   </section>
@@ -854,10 +869,11 @@ html.rm .backyard .by-reveal{display:none}
           <div><dt>会場</dt><dd>竹島水族館<small>愛知県蒲郡市</small></dd></div>
           <div><dt>日程</dt><dd>1月16日・23日・30日<small>2027年・いずれも土曜日</small></dd></div>
           <div><dt>時間</dt><dd>17:30〜19:30<small>受付 16:45〜17:20</small></dd></div>
-          <div><dt>参加費</dt><dd>2,900円<small>1名・子ども料金なし</small></dd></div>
+          <div><dt>参加費</dt><dd>2,900円<small>1名・小学生以上（未就学児は無料）</small></dd></div>
         </dl>
-        <p class="buy-note">受付時間（16:45〜17:20）を過ぎると参加できません。小学生以下のお子さまは保護者同伴でご参加ください。各日、定員になりしだい販売終了。チケット販売開始日 <span class="tbd">未定</span></p>
-        <a class="btn-paper big ticket-link" href="#apply" data-note="applyNote">チケットを買う<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <p class="buy-note">受付（16:45〜17:20）を過ぎると、閉館作業には参加できません。小学生以下のお子さまは、保護者の方といっしょにご参加ください。お客さま都合のキャンセル・払い戻しはできません。各日、定員になりしだい販売終了です。チケットは11月上旬に販売開始予定です。</p>
+        <a class="btn-paper big ticket-link" href="#apply" data-note="applyNote">申し込む<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <p class="buy-go">チケット販売サイトに移動して、お申し込みいただけます。</p>
         <p class="apply-note" id="applyNote" hidden>チケット販売ページは準備中です。URLが決まったら、このボタンからそのまま購入ページへ移動します。</p>
       </div>
     </div>
@@ -867,7 +883,7 @@ html.rm .backyard .by-reveal{display:none}
 
 <footer>
   <div class="wrap foot">
-    <dl><div><dt>主催</dt><dd>株式会社ウィーケン × 竹島水族館</dd></div></dl>
+    <dl><div><dt>主催</dt><dd>株式会社ウィーケン × 竹島水族館</dd></div><div><dt>お問い合わせ</dt><dd><span class="mail" data-mail><span class="tbd">メールアドレス 準備中</span></span></dd></div></dl>
     <p>このページは企画段階の素案です。掲載している日程・料金・内容はすべて仮のものです。</p>
     <p class="hours"><span class="day-only">このページは、閉館後（17:00〜翌9:00）すこし変わります。</span><span class="night-only">ただいま閉館後です（17:00〜翌9:00）。</span></p>
     <button class="by-link" id="byLink" type="button" hidden>招待状を見る</button>
@@ -912,8 +928,8 @@ html.rm .backyard .by-reveal{display:none}
       </section>
     </details>
     <div class="by-buy">
-      <p>チケットはこちら</p>
-      <a class="by-btn by-btn-paper ticket-link" href="#apply" data-note="byNote">チケットを買う</a>
+      <p>参加の申し込みはこちら</p>
+      <a class="by-btn by-btn-paper ticket-link" href="#apply" data-note="byNote">申し込む</a>
       <p class="by-small" id="byNote" hidden>チケット販売ページは準備中です。URLが決まったら、このボタンから購入ページへ移動します。</p>
       <p class="by-small">招待状と壁紙は、ページのいちばん下「招待状を見る」から、いつでも開き直せます。</p>
     </div>
@@ -935,6 +951,13 @@ html.rm .backyard .by-reveal{display:none}
   const TAU = Math.PI * 2;
 
   const bar = $('#bar'), dive = $('#top'), stage = $('.stage');
+
+  /* 問い合わせ先：ここにアドレスを入れると、ページ内のすべての欄に出ます */
+  const CONTACT_EMAIL = 'info@weeek-end.com';
+  if (CONTACT_EMAIL) document.querySelectorAll('[data-mail]').forEach(el => {
+    el.textContent = '';
+    const a = document.createElement('a'); a.href = 'mailto:' + CONTACT_EMAIL; a.textContent = CONTACT_EMAIL; el.append(a);
+  });
 
   /* チケット販売ページ：URLが決まったらここに入れる（エスケープのチケット販売サイト） */
   const TICKET_URL = '';
@@ -1321,7 +1344,7 @@ html.rm .backyard .by-reveal{display:none}
     const pitch = el('p', 'res-pitch', T.pitch);
     const cta = el('div', 'res-cta');
     const buy = el('a', 'btn-paper ticket-link'); buy.href = '#apply'; buy.dataset.note = 'resNote';
-    buy.innerHTML = 'チケットを買う<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+    buy.innerHTML = '申し込む<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
     wireTicket(buy);
     const facts = el('p', 'res-facts'); facts.innerHTML = '2027年1月16日・23日・30日（土）<br>17:30〜19:30／2,900円（1名）';
     const note = el('p', 'res-note', 'チケット販売ページは準備中です。URLが決まったら、このボタンからそのまま購入ページへ移動します。'); note.id = 'resNote'; note.hidden = true;
