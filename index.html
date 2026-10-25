@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap&text=%20%2F0123456789%E3%80%81%E3%80%8C%E3%80%8D%E3%81%82%E3%81%84%E3%81%8B%E3%81%8C%E3%81%8D%E3%81%93%E3%81%95%E3%81%97%E3%81%99%E3%81%A0%E3%81%A6%E3%81%A7%E3%81%A8%E3%81%AB%E3%81%AE%E3%81%AF%E3%81%B5%E3%81%B8%E3%81%BB%E3%82%82%E3%82%8B%E3%82%8C%E3%82%8F%E3%82%92%E3%82%93%E3%82%A2%E3%82%AB%E3%82%AF%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%83%E3%83%88%E3%83%8B%E3%83%95%E3%83%97%E3%83%A7%E3%83%A9%E3%83%BC%E4%B8%96%E4%BD%95%E4%BF%AE%E5%87%BA%E5%A4%A7%E5%B1%95%E5%B3%B6%E5%BE%8C%E6%89%8B%E6%97%8F%E6%97%A5%E6%99%82%E6%9B%B8%E6%9C%80%E6%9C%AC%E6%AD%A3%E6%B0%B4%E7%94%9F%E7%95%8C%E7%A0%94%E7%A4%BA%E7%A8%AE%E7%AB%B9%E7%B4%9A%E8%A7%A3%E8%AA%AC%E9%96%89%E9%A1%9E%E9%A4%A8%EF%BC%9F">
 <style>
 img{max-width:100%}
 [hidden]{display:none!important}
@@ -41,6 +42,7 @@ img{max-width:100%}
   --muted:#bea8a6;
   --gold:#ecb84f;
   --stamp:#b32630;
+  --f-hand:"Yusei Magic","Zen Kaku Gothic New","Hiragino Sans",sans-serif;
   --hen:#e8333b;
   --hen-paper:#c0222a;
   --exit:#17a566;
@@ -261,21 +263,29 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 @media (max-width:400px){.ticket{--stub:70px}.tk-main{padding:22px 16px 20px 18px}.tk-stamp{width:48px;height:48px;font-size:23px}}
 
 /* story */
-.story-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(44px,7vw,96px);align-items:start}
 .prose{display:grid;gap:1.25em;max-width:34em;font-size:16.5px;line-height:2.05}
 .prose .hush{font:700 1.06em/1.95 var(--f-display);letter-spacing:.1em;color:var(--muted);padding-left:1em;border-left:1px solid var(--line-strong)}
 .prose .em{font:800 1.18em/1.85 var(--f-display);letter-spacing:.08em;color:var(--text)}
 .note{font-size:12px;color:var(--muted);letter-spacing:.12em}
-.torch-fig{display:grid;gap:16px;min-width:0}
+.torch-fig{display:grid;gap:16px;min-width:0;margin:0}
+.ks-side{display:grid;gap:14px;min-width:0;align-content:start}
+.ks-stage{min-width:0}
+@media (max-width:599px){.ks-stage{margin-left:calc(-1 * var(--gutter-l));margin-right:calc(-1 * var(--gutter-r))}.ks-stage .torch{border-left:0;border-right:0}}
+@media (min-width:600px) and (max-width:899px){.ks-grid{max-width:600px;margin-inline:auto}}
+@media (min-width:900px){
+  .ks-grid{grid-template-columns:minmax(0,660px) minmax(300px,380px);gap:clamp(32px,4vw,60px);justify-content:center;align-items:start}
+  .ks-stage{width:min(100%, calc((100svh - 150px) * .8));justify-self:end}
+  .ks-side{position:sticky;top:112px}
+}
 .torch{position:relative;aspect-ratio:1122/1402;max-width:100%;background:#050102;border:1px solid var(--line);overflow:hidden;touch-action:pan-y;cursor:none;
-  --x:50%;--y:45%;--r:clamp(96px,30vw,160px)}
+  --x:50%;--y:45%;--r:clamp(84px,25vw,150px);--px:50%;--py:50%;--pw:1px;--ph:1px}
 .torch::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.06),transparent 30%,transparent 70%,rgba(255,255,255,.03))}
 .torch-lit{position:absolute;inset:0;
-  -webkit-mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,rgba(0,0,0,.55) 62%,transparent 100%);
-          mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,rgba(0,0,0,.55) 62%,transparent 100%)}
+  -webkit-mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,rgba(0,0,0,.55) 62%,transparent 100%),radial-gradient(var(--pw) var(--ph) at var(--px) var(--py),#000 0,#000 60%,rgba(0,0,0,.5) 82%,transparent 100%);
+          mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 0,#000 32%,rgba(0,0,0,.55) 62%,transparent 100%),radial-gradient(var(--pw) var(--ph) at var(--px) var(--py),#000 0,#000 60%,rgba(0,0,0,.5) 82%,transparent 100%)}
 .torch.blink .tk-eyes{animation:squint .3s cubic-bezier(.45,0,.2,1)}
 @keyframes squint{0%{transform:scaleY(1)}40%,56%{transform:scaleY(.05)}100%{transform:scaleY(1)}}
-.torch-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle var(--r) at var(--x) var(--y),rgba(255,236,214,.10),transparent 70%)}
+.torch-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle var(--r) at var(--x) var(--y),rgba(255,236,214,.10),transparent 70%),radial-gradient(var(--pw) var(--ph) at var(--px) var(--py),rgba(255,236,214,.07),transparent 80%)}
 .specimen{background:var(--paper);color:var(--ink);display:grid;grid-template-columns:auto minmax(0,1fr);border-top:6px solid #26445a;box-shadow:0 2px 0 rgba(0,0,0,.35)}
 .specimen-k{writing-mode:vertical-rl;font:700 11px/1 var(--f-body);letter-spacing:.34em;background:#26445a;color:#e9f0f4;padding:14px 9px;text-align:center}
 .specimen dl{display:grid;padding:12px 16px 12px 18px;gap:2px}
@@ -288,7 +298,6 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 .torch-fig figcaption::before{content:"";width:18px;height:1px;background:var(--line-strong)}
 .cap-fine{display:none}
 @media (hover:hover) and (pointer:fine){.cap-touch{display:none}.cap-fine{display:inline}}
-@media (max-width:760px){.story-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* points */
 .points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,56px)}
@@ -402,10 +411,13 @@ html[data-hours="night"] .night-eyes{opacity:1}
 
 /* ---------- プレ謎: the wall ---------- */
 .tk-bg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.tk-glow{position:absolute;left:69.8%;top:38.7%;width:21.4%;height:17.1%;border-radius:50%;mix-blend-mode:screen;
-  background:radial-gradient(closest-side,rgba(255,196,96,.30),rgba(255,160,60,.09) 55%,transparent);animation:tkGlow 3.4s ease-in-out infinite alternate}
+.tk-glow{position:absolute;left:69.8%;top:38.7%;width:21.4%;height:17.1%;border-radius:50%;mix-blend-mode:screen;opacity:0;transition:opacity 1.4s ease;
+  background:radial-gradient(closest-side,rgba(255,196,96,.30),rgba(255,160,60,.09) 55%,transparent)}
+.torch.eyes-on .tk-glow,html[data-hours="night"] .torch .tk-glow{opacity:1;animation:tkGlow 3.4s ease-in-out infinite alternate}
 @keyframes tkGlow{from{opacity:.55}to{opacity:1}}
-.tk-eyes{position:absolute;inset:0;transform-origin:80.5% 47.2%}
+.tk-eyes{position:absolute;inset:0;transform-origin:80.5% 47.2%;transition:opacity 1.4s ease}
+.torch:not(.eyes-on) .tk-eyes{opacity:0}
+html[data-hours="night"] .torch .tk-eyes{opacity:1}
 .tk-eye{position:absolute;width:10.7%;aspect-ratio:1;filter:brightness(.92) saturate(.92)}
 .tk-eye.l{left:70.2%;top:43.2%}
 .tk-eye.r{left:80%;top:42.7%}
@@ -416,32 +428,67 @@ html[data-hours="night"] .night-eyes{opacity:1}
 .tk-plate{position:absolute;left:9%;top:86%;width:21%;height:5.4%;display:grid;place-items:center;background:#d3d8db;border-top:3px solid #26445a;border-radius:2px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
 .tk-plate b{font:800 clamp(10px,2.6vw,14px)/1 var(--f-display);letter-spacing:.2em;color:#1a1f24}
 .t-fog{position:absolute;left:88%;top:13%;transform:translateX(-50%);writing-mode:vertical-rl;white-space:nowrap;font:800 clamp(19px,4.6vw,30px)/1.3 var(--f-display);letter-spacing:.26em;color:rgba(226,244,248,.62);text-shadow:0 0 6px rgba(190,235,245,.35)}
-.memo{box-sizing:border-box;position:absolute;left:8%;top:11%;width:36%;background:#ece6d8;color:#1d1714;padding:clamp(10px,3vw,16px) clamp(8px,2.2vw,12px) clamp(8px,2.2vw,12px);transform:rotate(-4deg);box-shadow:0 6px 14px rgba(0,0,0,.45);display:grid;gap:8px}
-.memo::before,.memo::after{content:"";position:absolute;top:-6px;width:34%;height:14px;background:rgba(232,222,196,.78);box-shadow:0 1px 2px rgba(0,0,0,.15)}
-.memo::before{left:-6%;transform:rotate(-14deg)}
-.memo::after{right:-6%;transform:rotate(12deg)}
-.memo-h{font:700 clamp(9px,2.2vw,11px)/1.3 var(--f-body);letter-spacing:.14em;border-bottom:1.5px solid #b3262c;padding-bottom:4px;white-space:nowrap}
-.rg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));aspect-ratio:1;border:1.5px solid rgba(29,23,20,.8)}
-.rg span{display:grid;place-items:center;font:800 clamp(13px,3.3vw,18px)/1 var(--f-display);border:1px solid rgba(29,23,20,.35)}
-.rg .ctr svg{width:66%;height:auto}
-.rq{font:700 clamp(9px,2.3vw,11.5px)/1.65 var(--f-display);letter-spacing:.06em}
-.torch-hint{font:700 clamp(9px,2.3vw,11.5px)/1.65 var(--f-display);letter-spacing:.06em;color:#b3262c}
+.t-fog{transition:opacity 1.6s ease .5s}
+.torch:not(.fog-on) .t-fog{opacity:0}
+.memo{box-sizing:border-box;position:absolute;left:var(--l,6%);top:var(--t,9%);width:34%;background:#e4ddcc;color:#1d1714;padding:clamp(8px,2.2vw,13px) clamp(8px,2.1vw,12px) clamp(9px,2.4vw,14px);transform:rotate(var(--rot,-4deg));box-shadow:0 4px 10px rgba(0,0,0,.5);display:grid;gap:clamp(4px,1.1vw,7px);transition:opacity .38s ease;pointer-events:none}
+.memo.leaving{opacity:0}
+.memo::before,.memo::after{content:"";position:absolute;top:-5px;width:30%;height:clamp(8px,2.2vw,12px);background:rgba(226,216,190,.75);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.memo::before{left:-7%;transform:rotate(-14deg)}
+.memo::after{right:-7%;transform:rotate(12deg)}
+.memo-h{display:flex;justify-content:space-between;align-items:baseline;gap:4px;font:400 clamp(7.5px,2vw,10.5px)/1.3 var(--f-hand);letter-spacing:.04em;border-bottom:1.2px solid #b3262c;padding-bottom:3px;white-space:nowrap}
+.memo-no{color:#b3262c;letter-spacing:0}
+.memo-q{font:400 clamp(10.5px,2.85vw,15px)/1.55 var(--f-hand);letter-spacing:.02em;word-break:auto-phrase}
+.memo-ok{position:absolute;right:-7%;bottom:-13%;width:clamp(30px,8.5vw,46px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1.5px solid #c0252d;color:#c0252d;background:rgba(236,230,216,.35);font:400 clamp(9px,2.4vw,13px)/1 var(--f-hand);letter-spacing:0;opacity:0;transform:rotate(-14deg) scale(1.7);transition:opacity .18s ease,transform .38s cubic-bezier(.2,.9,.3,1.25)}
+.memo.ok .memo-ok{opacity:.93;transform:rotate(-14deg) scale(1)}
+.tk-glint{position:absolute;left:50%;top:50%;width:12%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:0;
+  background:radial-gradient(closest-side,rgba(255,244,226,.5),rgba(255,226,190,.14) 45%,transparent)}
+.tk-glint.eye{width:24%;background:radial-gradient(closest-side,rgba(255,196,96,.55),rgba(255,160,60,.16) 50%,transparent)}
+.tk-glint.on{animation:glint 2.6s ease-in-out infinite}
+@keyframes glint{0%,100%{opacity:0;transform:translate(-50%,-50%) scale(.7)}45%{opacity:.9;transform:translate(-50%,-50%) scale(1)}}
+html.rm .tk-glint.on{animation:none;opacity:.75}
 
-/* ---------- プレ謎: the label ---------- */
-.name-form{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
-.name-in{font:700 20px/1.3 var(--f-display);letter-spacing:.2em;color:var(--ink);background:transparent;border:0;border-bottom:1.5px dashed rgba(20,10,11,.45);width:5.2em;max-width:100%;padding:3px 2px 4px;border-radius:0;-webkit-appearance:none;appearance:none}
-.name-in::placeholder{color:var(--ink);opacity:1}
-.name-in:focus{outline:none;border-bottom:1.5px solid var(--stamp)}
-.name-go{font:700 12px/1 var(--f-body);letter-spacing:.18em;background:var(--ink);color:var(--paper);border:0;border-radius:2px;padding:0 12px 0 14px;min-height:40px;cursor:pointer}
-.name-go:hover{background:#3a2422}
-.name-msg{font:500 12px/1.6 var(--f-body);color:var(--stamp);letter-spacing:.1em;width:100%;min-height:0}
-.name-msg:empty{display:none}
-.name-form.bad .name-in{animation:nope .42s}
+/* ---------- 閉館後スタッフ研修（竹島水族館クイズ） ---------- */
+.ks .specimen-k{letter-spacing:.3em}
+.ks-body{display:grid;gap:12px;padding:14px 16px 16px 18px;min-width:0;align-content:start}
+.ks-body>*{animation:ksIn .4s ease both}
+@keyframes ksIn{from{opacity:0;transform:translateY(4px)}}
+.ks-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:9px;border-bottom:1px dotted rgba(20,10,11,.28)}
+.ks-n{font:500 11px/1.4 var(--f-body);letter-spacing:.2em;color:var(--ink-soft)}
+.ks-n b{font:800 17px/1 var(--f-display);color:var(--ink);letter-spacing:.04em;margin:0 .12em}
+.ks-dots{display:flex;gap:6px}
+.ks-dots i{width:9px;height:9px;border-radius:50%;border:1.2px solid rgba(20,10,11,.38)}
+.ks-dots i.now{border-color:var(--ink);background:radial-gradient(circle,var(--ink) 0 1.6px,transparent 2.2px)}
+.ks-dots i.ok{border-color:var(--stamp);background:var(--stamp)}
+.ks-say{font:700 15px/1.85 var(--f-display);letter-spacing:.06em;color:var(--ink);word-break:auto-phrase}
+.ks-q{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;font:700 15.5px/1.75 var(--f-display);letter-spacing:.05em;color:var(--ink);word-break:auto-phrase}
+.ks-qn{font:800 13px/1 var(--f-display);color:var(--stamp);letter-spacing:.04em}
+.ks-opts{display:grid;gap:8px}
+.ks-opt{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;width:100%;text-align:left;font:700 16px/1.45 var(--f-display);letter-spacing:.06em;color:var(--ink);background:rgba(255,255,255,.5);border:1px solid rgba(20,10,11,.24);border-radius:3px;padding:10px 12px;min-height:50px;cursor:pointer;transition:border-color .15s,background .15s,opacity .25s;-webkit-tap-highlight-color:transparent}
+.ks-opt .ks-mk{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;border:1px solid rgba(20,10,11,.35);font:700 11px/1 var(--f-body);color:var(--ink-soft);letter-spacing:0;transition:background .2s,border-color .2s,color .2s}
+@media (hover:hover){.ks-opt:not(:disabled):hover{border-color:var(--ink);background:#fff}}
+.ks-opt:focus-visible{outline:2px solid var(--stamp);outline-offset:2px}
+.ks-opt:disabled{cursor:default}
+.ks-opt.no{opacity:.42;animation:nope .42s}
+.ks-opt.no .ks-tx{text-decoration:line-through;text-decoration-thickness:1.5px}
+.ks-opt.off{opacity:.36}
+.ks-opt.yes{border-color:var(--stamp);background:#fff}
+.ks-opt.yes .ks-mk{border-color:var(--stamp);background:var(--stamp);color:#fff}
+.ks-msg{font:500 12.5px/1.6 var(--f-body);color:var(--stamp);letter-spacing:.1em}
+.ks-msg:empty{display:none}
+.ks-ex{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;padding-top:11px;border-top:1px dotted rgba(20,10,11,.28)}
+.ks-ex-k{font:700 10.5px/1 var(--f-body);letter-spacing:.2em;color:#fff;background:#26445a;padding:.5em .5em .45em .7em;border-radius:2px;white-space:nowrap}
+.ks-ex-t{font:500 14px/1.85 var(--f-body);letter-spacing:.04em;color:var(--ink);word-break:auto-phrase}
+.ks-next{justify-self:start;display:inline-flex;align-items:center;gap:10px;font:700 13px/1 var(--f-body);letter-spacing:.16em;background:var(--ink);color:var(--paper);border:0;border-radius:2px;padding:0 16px 0 18px;min-height:46px;cursor:pointer}
+.ks-next svg{width:14px;height:14px}
+@media (hover:hover){.ks-next:hover{background:#3a2422}}
+.ks-hint,.ks-again{justify-self:start;font:500 12px/1 var(--f-body);letter-spacing:.12em;color:var(--ink-soft);background:none;border:0;border-bottom:1px solid rgba(20,10,11,.38);padding:10px 0 4px;cursor:pointer}
+.ks-done-row{display:flex;align-items:center;gap:14px}
+.ks-big{font:800 21px/1.3 var(--f-display);letter-spacing:.14em;color:var(--ink)}
+.ks-say2{font:500 13.5px/1.85 var(--f-body);color:var(--ink-soft);letter-spacing:.04em;word-break:auto-phrase}
+.ks-acts{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
+html.rm .ks-body>*{animation:none}
 @keyframes nope{20%,60%{translate:-6px 0}40%,80%{translate:6px 0}}
-.name-done{display:flex;align-items:center;flex-wrap:wrap;gap:10px 12px}
-.name-done b{font:800 20px/1.3 var(--f-display);letter-spacing:.2em}
 .solved-stamp{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--stamp);color:var(--stamp);font:800 12px/1 var(--f-display);transform:rotate(-12deg);box-shadow:inset 0 0 0 2px var(--paper),inset 0 0 0 3px var(--stamp)}
-.to-by{white-space:nowrap;font:700 12px/1 var(--f-body);letter-spacing:.16em;color:var(--ink);background:none;border:0;border-bottom:1px solid rgba(20,10,11,.5);padding:12px 0 4px;cursor:pointer}
 .spec-live{justify-self:start;display:inline-block;margin:-4px 0 0 0;font:700 10.5px/1 var(--f-body);letter-spacing:.2em;color:#fff;background:#26445a;padding:.55em .7em .5em .8em;border-radius:2px}
 
 /* ---------- 閉館後の招待状（プレ謎の報酬） ---------- */
@@ -696,54 +743,47 @@ html.rm .backyard .by-reveal{display:none}
   </section>
 
   <section class="sec" id="story" aria-labelledby="h-story">
-    <div class="wrap">
+    <div class="wrap side">
       <div class="sec-head"><span class="tag">あらすじ</span><h2 id="h-story"><span>閉館後の館内が、</span><span>どこかおかしい。</span></h2></div>
-      <div class="story-grid">
-        <div class="prose">
-          <p>閉館のチャイムが鳴り、最後のお客さんが帰っていきました。照明の落ちた館内に残ったのは、水槽のポンプの音だけ。</p>
-          <p class="hush">だれもいない、静かな時間。<br>……のはずだった。</p>
-          <p>いるはずの生きものが見当たらない。いないはずの何かが、ガラスの向こうからこちらを見ている。</p>
-          <p class="em">この水族館は、閉館後もやっぱり、なんか変。</p>
-          <p>館内に残された手がかりを集めて、その「変」の正体をつきとめてください。</p>
-          <p class="note">※ ストーリー・コピーは仮のものです</p>
-        </div>
-        <figure class="torch-fig">
-          <div class="torch" id="torch" role="img" aria-label="暗い展示室を照らすと、閉館後の水槽が見える。岩かげから2つの目がこちらをのぞいていて、光を目で追ってくる。ガラスには「まだ、いる。」の文字。水槽には「閉館後スタッフへ」と書かれたメモが貼ってあり、3×3の盤（上の段：し・だ・か、まんなかの段：め・目の印・ま、下の段：る・い・こ）と「のどの先の暗闇で、目のうごきを、おえ。」と書かれている">
-            <div class="torch-lit">
-              <img class="tk-bg" src="tank.webp" alt="">
-              <span class="tk-glow"></span>
-              <div class="tk-eyes" id="tkEyes" data-look="c"><div class="tk-eye l"><img class="lk-c" src="eye-l-c.webp" alt=""><img class="lk-lft" src="eye-l-lft.webp" alt=""><img class="lk-ru" src="eye-l-ru.webp" alt=""><img class="lk-rd" src="eye-l-rd.webp" alt=""><img class="lk-hi" src="eye-l-hi.webp" alt=""></div><div class="tk-eye r"><img class="lk-c" src="eye-r-c.webp" alt=""><img class="lk-lft" src="eye-r-lft.webp" alt=""><img class="lk-ru" src="eye-r-ru.webp" alt=""><img class="lk-rd" src="eye-r-rd.webp" alt=""><img class="lk-hi" src="eye-r-hi.webp" alt=""></div></div>
-              <img class="tk-rock" src="rock-front.webp" alt="">
-              <p class="t-fog">まだ、いる。</p>
-              <span class="tk-plate"><b>？？？</b></span>
-              <div class="memo">
-                <p class="memo-h">閉館後スタッフへ</p>
-                <div class="rg"><span>し</span><span>だ</span><span>か</span><span>め</span><span class="ctr"><svg viewBox="0 0 40 24"><path d="M2 12C8 4 14 1.5 20 1.5S32 4 38 12C32 20 26 22.5 20 22.5S8 20 2 12Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="12" r="6" fill="currentColor"/></svg></span><span>ま</span><span>る</span><span>い</span><span>こ</span></div>
-                <p class="rq">のどの先の暗闇で、<br>目のうごきを、おえ。</p>
-                <p class="torch-hint night-only">まばたきが、くぎり。<br>目の印から、はじまる。</p>
-              </div>
-            </div>
-            <div class="torch-glow"></div>
-          </div>
-          <div class="specimen">
-            <span class="specimen-k">展示解説</span>
-            <dl>
-              <div><dt>名前</dt><dd id="nameCell">
-                <form class="name-form" id="nameForm" autocomplete="off" novalidate>
-                  <label class="vh" for="nameIn">この生きものの名前</label>
-                  <input class="name-in" id="nameIn" name="name" type="text" placeholder="？？？" maxlength="12" autocapitalize="off" spellcheck="false" enterkeyhint="done">
-                  <button class="name-go" type="submit">書きこむ</button>
-                  <p class="name-msg" id="nameMsg" role="status"></p>
-                </form>
-              </dd></div>
-              <div><dt>すみか</dt><dd>この水族館（閉館後）</dd></div>
-              <div><dt>特徴</dt><dd>暗いところで、目が光る。</dd></div>
-            </dl>
-          </div>
-          <span class="spec-live night-only">ただいま観察できます</span>
-          <figcaption><span class="cap-touch">指でなぞると、暗闇を照らせます</span><span class="cap-fine">カーソルを動かすと、暗闇を照らせます</span></figcaption>
-        </figure>
+      <div class="prose">
+        <p>閉館のチャイムが鳴り、最後のお客さんが帰っていきました。照明の落ちた館内に残ったのは、水槽のポンプの音だけ。</p>
+        <p class="hush">だれもいない、静かな時間。<br>……のはずだった。</p>
+        <p>いるはずの生きものが見当たらない。いないはずの何かが、ガラスの向こうからこちらを見ている。</p>
+        <p class="em">この水族館は、閉館後もやっぱり、なんか変。</p>
+        <p>館内に残された手がかりを集めて、その「変」の正体をつきとめてください。</p>
+        <p class="note">※ ストーリー・コピーは仮のものです</p>
       </div>
+    </div>
+  </section>
+
+  <section class="sec" id="kenshu" aria-labelledby="h-kenshu">
+    <div class="wrap">
+      <div class="sec-head"><span class="tag">竹島水族館クイズ</span><h2 id="h-kenshu"><span>閉館後スタッフ</span><span>研修</span></h2><p class="sec-lead">暗い水槽のどこかに、研修メモが貼ってあります。照らしてさがして、5問に答えてください。全問正解すると、閉館後の水族館から、あるものが届きます。</p></div>
+      <figure class="torch-fig ks-grid" aria-labelledby="h-kenshu">
+        <div class="ks-stage">
+            <div class="torch" id="torch" role="img" aria-label="暗い水槽。懐中電灯で照らすと、ガラスに貼られた研修メモが見つかる。">
+              <div class="torch-lit">
+                <img class="tk-bg" src="tank.webp" alt="">
+                <span class="tk-glow"></span>
+                <div class="tk-eyes" id="tkEyes" data-look="c"><div class="tk-eye l"><img class="lk-c" src="eye-l-c.webp" alt=""><img class="lk-lft" src="eye-l-lft.webp" alt=""><img class="lk-ru" src="eye-l-ru.webp" alt=""><img class="lk-rd" src="eye-l-rd.webp" alt=""><img class="lk-hi" src="eye-l-hi.webp" alt=""></div><div class="tk-eye r"><img class="lk-c" src="eye-r-c.webp" alt=""><img class="lk-lft" src="eye-r-lft.webp" alt=""><img class="lk-ru" src="eye-r-ru.webp" alt=""><img class="lk-rd" src="eye-r-rd.webp" alt=""><img class="lk-hi" src="eye-r-hi.webp" alt=""></div></div>
+                <img class="tk-rock" src="rock-front.webp" alt="">
+                <p class="t-fog">まだ、いる。</p>
+                <span class="tk-plate"><b>？？？</b></span>
+                <div class="memo" id="memo"><p class="memo-h"><span>閉館後スタッフへ</span><span class="memo-no" id="memoNo">研修 1/5</span></p><p class="memo-q" id="memoQ">竹島水族館で、アシカのほかに、ショーに出ている生きものは？</p><span class="memo-ok">正解</span></div>
+              </div>
+              <span class="tk-glint" id="tkGlint"></span>
+              <div class="torch-glow"></div>
+            </div>
+        </div>
+        <div class="ks-side">
+            <div class="specimen ks" id="ks">
+              <span class="specimen-k">スタッフ研修</span>
+              <div class="ks-body" id="ksBody" aria-live="polite"><p class="ks-say">暗がりのどこかに、研修メモが貼ってあります。</p></div>
+            </div>
+            <span class="spec-live night-only">ただいま観察できます</span>
+            <figcaption><span class="cap-touch">指でなぞると、暗闇を照らせます</span><span class="cap-fine">カーソルを動かすと、暗闇を照らせます</span></figcaption>
+        </div>
+      </figure>
     </div>
   </section>
 
@@ -1005,11 +1045,14 @@ html.rm .backyard .by-reveal{display:none}
   /* ---------- 懐中電灯 ---------- */
   const torch = $('#torch'), tkEyes = $('#tkEyes');
   let tx = .5, ty = .45, cx = .5, cy = .45, manual = -1e9, torchOn = false, litT = 0, eyeCool = 0;
-  const setLight = (X, Y) => { const r = torch.getBoundingClientRect(); tx = clamp((X - r.left) / r.width, -.1, 1.1); ty = clamp((Y - r.top) / r.height, -.1, 1.1); manual = performance.now(); };
-  torch.addEventListener('pointermove', e => setLight(e.clientX, e.clientY));
-  torch.addEventListener('pointerdown', e => setLight(e.clientX, e.clientY));
-  torch.addEventListener('touchstart', e => { const t = e.touches[0]; setLight(t.clientX, t.clientY); }, { passive: true });
-  torch.addEventListener('touchmove', e => { const t = e.touches[0]; setLight(t.clientX, t.clientY); }, { passive: true });
+  const LIFT = 52;   // 指で照らすときは、指で光が隠れないよう少し上を照らす
+  const setLight = (X, Y, touch) => { const r = torch.getBoundingClientRect(); if (touch) Y -= LIFT; tx = clamp((X - r.left) / r.width, -.1, 1.1); ty = clamp((Y - r.top) / r.height, -.1, 1.1); manual = performance.now(); };
+  const aimAt = (x, y) => { tx = x; ty = y; manual = performance.now(); };
+  let torchHook = null;   // 研修クイズが、光の位置を見て使う
+  torch.addEventListener('pointermove', e => setLight(e.clientX, e.clientY, e.pointerType === 'touch'));
+  torch.addEventListener('pointerdown', e => setLight(e.clientX, e.clientY, e.pointerType === 'touch'));
+  torch.addEventListener('touchstart', e => { const t = e.touches[0]; setLight(t.clientX, t.clientY, true); }, { passive: true });
+  torch.addEventListener('touchmove', e => { const t = e.touches[0]; setLight(t.clientX, t.clientY, true); }, { passive: true });
   function torchBlink() { torch.classList.remove('blink'); void torch.offsetWidth; torch.classList.add('blink'); }
   function updateTorch(now, dt) {
     if (!torchOn) return;
@@ -1022,7 +1065,9 @@ html.rm .backyard .by-reveal{display:none}
     const ex = cx - .805, ey = (cy - .472) * r;
     const look = ex < -.13 ? 'lft' : ex > .05 && ey < -.04 ? 'ru' : ex > .05 && ey > .04 ? 'rd' : 'c';
     if (tkEyes.dataset.look !== look) tkEyes.dataset.look = look;
-    if (Math.hypot(ex, ey) < .09) { litT += dt; if (litT > .55 && now > eyeCool) { torchBlink(); eyeCool = now + 2600; litT = 0; } } else litT = 0;
+    const eyesLit = Math.hypot(ex, ey) < .09;
+    if (eyesLit) { litT += dt; if (litT > .55 && now > eyeCool) { torchBlink(); eyeCool = now + 2600; litT = 0; } } else litT = 0;
+    if (torchHook) torchHook(now, dt, f, eyesLit);
   }
   new IntersectionObserver(es => es.forEach(e => torchOn = e.isIntersecting), { rootMargin: '80px' }).observe(torch);
 
@@ -1045,35 +1090,21 @@ html.rm .backyard .by-reveal{display:none}
 
   /* ---------- プレ謎 ---------- */
   const SHARE_URL = 'https://nazo-sakasu.github.io/nankahen-heikango/';
-  const ANSWERS = ['316e700e', '7c621d28', 'a85a58fa', '81ff83c7', '8ac3745f'];
   const fnv = s => { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h.toString(16).padStart(8, '0'); };
-  const norm = s => s.normalize('NFKC').toLowerCase().replace(/[\s。、.,!?「」『』"'・…]/g, '').replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60));
   const KEY = 'nankahen-heikango-backyard';
   const store = {
     get() { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return null; } },
     set(v) { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
   };
-  const nameForm = $('#nameForm'), nameIn = $('#nameIn'), nameMsg = $('#nameMsg'), nameCell = $('#nameCell');
   const by = $('#backyard'), byLink = $('#byLink');
-  const WRONG = ['ちがうようだ。', 'その名前では、ふりむかない。', '暗闇の目は、まだこちらを見ている。'];
   /* 招待状の番号：2,400番台から始まり、日がたつほど大きくなる（同じ時刻の人どうしは近い番号） */
   const NO_BASE = 2400, NO_START = Date.UTC(2026, 10, 1, 0, 0) - 9 * 3600e3, NO_STEP = 20 * 60e3;
   const inviteNo = at => NO_BASE + Math.max(0, Math.floor((at - NO_START) / NO_STEP)) + parseInt(fnv(String(at)), 16) % 17;
-  let wrongN = 0, solved = store.get(), lastFocus = null;
+  let solved = store.get(), lastFocus = null;
   if (solved && solved.v !== 2) { solved = { at: solved.at, no: inviteNo(solved.at), v: 2 }; store.set(solved); }
   const fmtJST = t => { try { return new Intl.DateTimeFormat('ja-JP', { timeZone: 'Asia/Tokyo', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(t)); } catch (e) { return new Date(t).toLocaleString(); } };
   const shareText = '閉館後の水族館に、招待されました。いっしょに行きませんか。\n#この水族館なんか変';
 
-  function showSolved() {
-    nameCell.innerHTML = '';
-    const wrap = document.createElement('div'); wrap.className = 'name-done';
-    const b = document.createElement('b'); b.textContent = 'めだま';
-    const st = document.createElement('span'); st.className = 'solved-stamp'; st.textContent = '解読';
-    const go = document.createElement('button'); go.type = 'button'; go.className = 'to-by'; go.textContent = '招待状を見る';
-    go.addEventListener('click', () => openBackyard(false));
-    wrap.append(b, st, go); nameCell.append(wrap);
-    byLink.hidden = false;
-  }
   function openBackyard(withDoor) {
     lastFocus = document.activeElement;
     showInvite();
@@ -1233,24 +1264,156 @@ html.rm .backyard .by-reveal{display:none}
     by.hidden = true; root.classList.remove('by-open');
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
-  nameForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const v = norm(nameIn.value);
-    if (!v) { nameMsg.textContent = '名前を書きこんでください。'; return; }
-    if (ANSWERS.includes(fnv(v))) {
-      if (!solved) { const at = Date.now(); solved = { at, no: inviteNo(at), v: 2 }; store.set(solved); }
-      nameIn.blur(); showSolved();
-      setTimeout(() => openBackyard(true), 700);
-    } else {
-      nameForm.classList.remove('bad'); void nameForm.offsetWidth; nameForm.classList.add('bad');
-      nameMsg.textContent = WRONG[wrongN++ % WRONG.length];
-      torchBlink();
-    }
+
+  /* ---------- 閉館後スタッフ研修（竹島水族館クイズ） ----------
+     暗がりのメモを照らして見つける → 答える → 全問正解のあと、水槽の奥の目と目が合うと招待状。 */
+  const QUIZ = [{"q": "竹島水族館で、アシカのほかに、ショーに出ている生きものは？", "o": ["イルカ", "カピバラ", "シャチ"], "a": 1, "e": "水族館なのに、カピバラ。アシカショーとはべつに、カピバラのショーがあります。", "at": [9, 14, -4]},
+    {"q": "竹島水族館が、日本でもトップクラスの種類を展示している生きものは？", "o": ["クラゲ", "ペンギン", "深海の生きもの"], "a": 2, "e": "地元の漁師さんとの強いつながりがあるからこそ、100種類以上の深海の生きものに会えます。", "at": [57, 60, 4]},
+    {"q": "竹島水族館で、手でさわれる「世界最大級のカニ」は？", "o": ["タカアシガニ", "タラバガニ", "ズワイガニ"], "a": 0, "e": "あしを広げると3mをこえることもある、世界最大級のカニ。生きものにさわれるプールで、そっとさわれます。", "at": [7, 60, -3]},
+    {"q": "竹島水族館の手書きの解説に、書いてあることがあるのは？", "o": ["その魚の血液型", "食べたときの味", "その魚の星座"], "a": 1, "e": "飼育員さんの手書きの解説には、食べたときの味や、お値段まで書いてあることも。読みはじめると、なかなか次の水槽へ進めません。", "at": [58, 16, 3]},
+    {"q": "ふだんの竹島水族館は、何時に閉館する？", "o": ["17:00", "19:30", "21:00"], "a": 0, "e": "ふだんは17:00に閉館します（入館は16:30まで）。この3日間の夜だけは、その“あと”におじゃまします。", "at": [26, 35, -6]}];
+  const QKEY = 'nankahen-heikango-kenshu';
+  const qLoad = () => { try { const v = JSON.parse(localStorage.getItem(QKEY) || 'null'); return v && Number.isInteger(v.i) ? clamp(v.i, 0, QUIZ.length - 1) : 0; } catch (e) { return 0; } };
+  const qSave = i => { try { localStorage.setItem(QKEY, JSON.stringify({ i })); } catch (e) {} };
+  const memo = $('#memo'), memoNo = $('#memoNo'), memoQ = $('#memoQ'), ksBody = $('#ksBody'), glint = $('#tkGlint');
+  const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
+  const MARKS = ['ア', 'イ', 'ウ'];
+  const NG = ['ちがうみたい。もう一度。', 'うーん、それではないようです。', '先輩スタッフが、首をかしげています。'];
+  let ksI = qLoad(), ksPhase = 'search', ngN = 0, seekT = 0, waitT = 0, eyeT = 0, pinK = 0, pinGoal = 0, mR = null;
+
+  function measureMemo() {
+    const W = torch.clientWidth || 1, H = torch.clientHeight || 1;
+    mR = { l: memo.offsetLeft / W, t: memo.offsetTop / H, w: memo.offsetWidth / W, h: memo.offsetHeight / H, pw: memo.offsetWidth, ph: memo.offsetHeight };
+    torch.style.setProperty('--px', ((mR.l + mR.w / 2) * 100).toFixed(2) + '%');
+    torch.style.setProperty('--py', ((mR.t + mR.h / 2) * 100).toFixed(2) + '%');
+  }
+  function setPin(k) {
+    pinK = k;
+    const a = mR ? Math.max(1, mR.pw * .98 * k) : 1, b = mR ? Math.max(1, mR.ph * .98 * k) : 1;
+    torch.style.setProperty('--pw', a.toFixed(1) + 'px'); torch.style.setProperty('--ph', b.toFixed(1) + 'px');
+  }
+  function pinTo(k) { pinGoal = k; if (RM || !torchOn) setPin(k); }
+  function glintAt(x, y, eye) { glint.style.left = (x * 100).toFixed(2) + '%'; glint.style.top = (y * 100).toFixed(2) + '%'; glint.classList.toggle('eye', !!eye); }
+
+  function showMemo() {
+    const Q = QUIZ[ksI];
+    memo.classList.remove('found', 'ok');
+    memoNo.textContent = '研修 ' + (ksI + 1) + '/' + QUIZ.length;
+    memoQ.textContent = Q.q;
+    memo.style.setProperty('--l', Q.at[0] + '%'); memo.style.setProperty('--t', Q.at[1] + '%'); memo.style.setProperty('--rot', Q.at[2] + 'deg');
+    measureMemo(); pinGoal = 0; setPin(0);
+  }
+  function top() {
+    const t = mk('div', 'ks-top'), n = mk('p', 'ks-n'), d = mk('span', 'ks-dots');
+    const fin = ksPhase === 'final' || ksPhase === 'done';
+    n.innerHTML = ksPhase === 'done' ? '研修 <b>修了</b>' : '研修メモ <b>' + (ksI + 1) + '</b> / ' + QUIZ.length;
+    d.setAttribute('aria-hidden', 'true');
+    QUIZ.forEach((_, i) => d.append(mk('i', fin || i < ksI || (i === ksI && ksPhase === 'ok') ? 'ok' : i === ksI ? 'now' : '')));
+    t.append(n, d); return t;
+  }
+  function renderSearch() {
+    const say = mk('p', 'ks-say');
+    say.innerHTML = ksI === 0 ? '暗がりのどこかに、研修メモが貼ってあります。<br>照らして、さがしてください。' : '次のメモは、暗がりのべつの場所に。<br>照らして、さがしてください。';
+    const hint = mk('button', 'ks-hint', '見つからないときは、ここを押す'); hint.type = 'button'; hint.id = 'ksHint'; hint.hidden = true;
+    hint.addEventListener('click', () => { if (mR) aimAt(mR.l + mR.w / 2, mR.t + mR.h / 2); found(); });
+    ksBody.replaceChildren(top(), say, hint);
+  }
+  function renderRead() {
+    const Q = QUIZ[ksI];
+    const q = mk('p', 'ks-q'); q.append(mk('span', 'ks-qn', 'Q' + (ksI + 1)), mk('span', '', Q.q));
+    const opts = mk('div', 'ks-opts'); opts.setAttribute('role', 'group'); opts.setAttribute('aria-label', '答えをえらぶ');
+    Q.o.forEach((t, i) => { const b = mk('button', 'ks-opt'); b.type = 'button'; b.dataset.i = i; b.append(mk('span', 'ks-mk', MARKS[i]), mk('span', 'ks-tx', t)); opts.append(b); });
+    const msg = mk('p', 'ks-msg'); msg.setAttribute('role', 'status');
+    ksBody.replaceChildren(top(), q, opts, msg);
+  }
+  function found() {
+    if (ksPhase !== 'search') return;
+    ksPhase = 'read'; seekT = 0; glint.classList.remove('on');
+    memo.classList.add('found'); pinTo(1);
+    renderRead();
+  }
+  function correct(b) {
+    const Q = QUIZ[ksI], last = ksI === QUIZ.length - 1;
+    ksPhase = 'ok'; memo.classList.add('ok');
+    ksBody.querySelectorAll('.ks-opt').forEach(o => { o.disabled = true; if (o !== b) o.classList.add('off'); });
+    b.classList.add('yes'); b.querySelector('.ks-mk').textContent = '◯';
+    b.setAttribute('aria-label', '正解：' + Q.o[Q.a]);
+    ksBody.querySelector('.ks-msg').textContent = '';
+    ksBody.querySelector('.ks-top').replaceWith(top());
+    const ex = mk('div', 'ks-ex'); ex.append(mk('span', 'ks-ex-k', '解説'), mk('p', 'ks-ex-t', Q.e));
+    const nx = mk('button', 'ks-next'); nx.type = 'button'; nx.innerHTML = (last ? '研修をおえる' : '次のメモをさがす') + ARROW;
+    nx.addEventListener('click', last ? toFinal : () => goTo(ksI + 1));
+    ksBody.append(ex, nx);
+    if (!last) qSave(ksI + 1);
+  }
+  ksBody.addEventListener('click', e => {
+    const b = e.target.closest('.ks-opt');
+    if (!b || b.disabled || ksPhase !== 'read') return;
+    if (+b.dataset.i === QUIZ[ksI].a) correct(b);
+    else { b.disabled = true; b.classList.add('no'); ksBody.querySelector('.ks-msg').textContent = NG[ngN++ % NG.length]; }
   });
+  function goTo(i) {
+    ksI = i; qSave(i); ksPhase = 'moving'; waitT = 0;
+    torch.classList.remove('fog-on'); torch.classList.toggle('eyes-on', false);
+    pinTo(0); glint.classList.remove('on');
+    renderSearch();
+    memo.classList.add('leaving');
+    setTimeout(() => { showMemo(); memo.classList.remove('leaving'); ksPhase = 'search'; if (RM) found(); }, RM ? 0 : 420);
+  }
+  function toFinal() {
+    ksPhase = 'final'; eyeT = 0; waitT = 0;
+    pinTo(0); memo.classList.add('leaving');
+    torch.classList.add('eyes-on');
+    glintAt(.805, .47, true); glint.classList.add('on');
+    const say = mk('p', 'ks-say'); say.innerHTML = '研修は、これでおしまい。おつかれさまでした。<br>……水槽の奥で、なにかが光った。<br>照らしてみてください。';
+    const hint = mk('button', 'ks-hint', '照らしてみる'); hint.type = 'button'; hint.id = 'ksHint'; hint.hidden = !RM;
+    hint.addEventListener('click', () => { aimAt(.805, .47); setTimeout(reveal, RM ? 0 : 750); });
+    ksBody.replaceChildren(top(), say, hint);
+  }
+  function renderDone() {
+    const row = mk('div', 'ks-done-row'); row.append(mk('p', 'ks-big', '全' + QUIZ.length + '問　正解'), mk('span', 'solved-stamp', '修了'));
+    const say = mk('p', 'ks-say2', '暗闇の目と目が合った人にだけ、閉館後の招待状が届いています。');
+    const go = mk('button', 'ks-next'); go.type = 'button'; go.innerHTML = '招待状を見る' + ARROW;
+    go.addEventListener('click', () => openBackyard(false));
+    const again = mk('button', 'ks-again', 'もう一度、研修を受ける'); again.type = 'button';
+    again.addEventListener('click', () => goTo(0));
+    const acts = mk('div', 'ks-acts'); acts.append(go, again);
+    ksBody.replaceChildren(top(), row, say, acts);
+    byLink.hidden = false;
+  }
+  function reveal() {
+    if (ksPhase !== 'final') return;
+    ksPhase = 'done'; glint.classList.remove('on');
+    if (!solved) { const at = Date.now(); solved = { at, no: inviteNo(at), v: 2 }; store.set(solved); }
+    qSave(0);
+    torch.classList.add('eyes-on', 'fog-on'); torchBlink();
+    renderDone();
+    setTimeout(() => openBackyard(true), RM ? 0 : 650);
+  }
+  torchHook = (now, dt, f, eyesLit) => {
+    if (Math.abs(pinGoal - pinK) > .002) setPin(pinK + (pinGoal - pinK) * Math.min(1, f * 1.5));
+    const hand = now - manual < 1500;
+    if (ksPhase === 'search' && mR) {
+      waitT += dt;
+      const m = .015, inside = cx > mR.l - m && cx < mR.l + mR.w + m && cy > mR.t - m && cy < mR.t + mR.h + m;
+      if (inside && hand) { seekT += dt; if (seekT > .35) found(); } else seekT = Math.max(0, seekT - dt);
+      if (waitT > 10 && !glint.classList.contains('on')) { glintAt(mR.l + mR.w * .16, mR.t + .005); glint.classList.add('on'); }
+      if (waitT > 18) { const h = $('#ksHint'); if (h && h.hidden) h.hidden = false; }
+    } else if (ksPhase === 'final') {
+      waitT += dt;
+      if (eyesLit && hand) { eyeT += dt; if (eyeT > .45) reveal(); } else eyeT = 0;
+      if (waitT > 6) { const h = $('#ksHint'); if (h && h.hidden) h.hidden = false; }
+    }
+  };
+  const remeasure = () => { if (ksPhase !== 'done') { measureMemo(); setPin(pinK); } };
+  addEventListener('resize', remeasure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+  if (solved) { ksPhase = 'done'; showMemo(); memo.classList.add('leaving'); torch.classList.add('eyes-on', 'fog-on'); renderDone(); }
+  else { showMemo(); renderSearch(); if (RM) found(); }
   $('#byClose').addEventListener('click', closeBackyard);
   byLink.addEventListener('click', () => openBackyard(false));
   by.addEventListener('keydown', e => { if (e.key === 'Escape') closeBackyard(); });
-  if (solved) showSolved();
 
   /* ---------- 閉館後タイプ診断 ---------- */
   const ICONS = {"tako": "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"M18 33c0-12 6-21 14-21s14 9 14 21c0 3-1 5-3 6M18 33c0 3 1 5 3 6\"/><path d=\"M21 39c-3 5-8 6-11 12M26 40c-1 6-4 10-8 14M32 40v15M38 40c1 6 4 10 8 14M43 39c3 5 8 6 11 12\"/><circle cx=\"26.5\" cy=\"28\" r=\"1.9\" class=\"f\"/><circle cx=\"37.5\" cy=\"28\" r=\"1.9\" class=\"f\"/></svg>", "chin": "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"M6 56h52\"/><path d=\"M26 56c0-9 7-13 7-22 0-8-8-10-8-17 0-4 3-7 7-7s6 3 6 6\"/><path d=\"M45 56c0-6 4-8 4-14 0-5-5-6-5-10 0-3 2-4 4-4s4 2 4 4\"/><circle cx=\"33.5\" cy=\"12.5\" r=\"1.7\" class=\"f\"/><circle cx=\"49.5\" cy=\"30.5\" r=\"1.3\" class=\"f\"/></svg>", "iwashi": "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><g><path d=\"M8 22c5-4 11-4 16 0-5 4-11 4-16 0z\"/><path d=\"M24 22l5-4v8z\"/></g><g><path d=\"M30 14c5-4 11-4 16 0-5 4-11 4-16 0z\"/><path d=\"M46 14l5-4v8z\"/></g><g><path d=\"M26 34c5-4 11-4 16 0-5 4-11 4-16 0z\"/><path d=\"M42 34l5-4v8z\"/></g><g><path d=\"M10 44c5-4 11-4 16 0-5 4-11 4-16 0z\"/><path d=\"M26 44l5-4v8z\"/></g><g><path d=\"M32 52c5-4 11-4 16 0-5 4-11 4-16 0z\"/><path d=\"M48 52l5-4v8z\"/></g></svg>", "kurage": "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><path d=\"M15 31c0-10 8-18 17-18s17 8 17 18c-6 3-28 3-34 0z\"/><path d=\"M21 33c-2 6 2 10 0 17M29 34c-2 7 2 11 0 20M35 34c2 7-2 11 0 20M43 33c2 6-2 10 0 15\"/><path d=\"M24 22c2-3 5-4 8-4\" opacity=\".6\"/></svg>"};
