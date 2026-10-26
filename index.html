@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap&text=%20%2F0123456789%E3%80%81%E3%80%8C%E3%80%8D%E3%81%82%E3%81%84%E3%81%8B%E3%81%8C%E3%81%8D%E3%81%93%E3%81%95%E3%81%97%E3%81%99%E3%81%A0%E3%81%A6%E3%81%A7%E3%81%A8%E3%81%AB%E3%81%AE%E3%81%AF%E3%81%B5%E3%81%B8%E3%81%BB%E3%82%82%E3%82%8B%E3%82%8C%E3%82%8F%E3%82%92%E3%82%93%E3%82%A2%E3%82%AB%E3%82%AF%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%83%E3%83%88%E3%83%8B%E3%83%95%E3%83%97%E3%83%A7%E3%83%A9%E3%83%BC%E4%B8%96%E4%BD%95%E4%BF%AE%E5%87%BA%E5%A4%A7%E5%B1%95%E5%B3%B6%E5%BE%8C%E6%89%8B%E6%97%8F%E6%97%A5%E6%99%82%E6%9B%B8%E6%9C%80%E6%9C%AC%E6%AD%A3%E6%B0%B4%E7%94%9F%E7%95%8C%E7%A0%94%E7%A4%BA%E7%A8%AE%E7%AB%B9%E7%B4%9A%E8%A7%A3%E8%AA%AC%E9%96%89%E9%A1%9E%E9%A4%A8%EF%BC%9F">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap&text=%20.%2F0123456789No%E2%80%9C%E2%80%9D%E3%80%81%E3%80%8C%E3%80%8D%E3%81%82%E3%81%84%E3%81%8A%E3%81%8B%E3%81%8D%E3%81%92%E3%81%9B%E3%81%9F%E3%81%A0%E3%81%A1%E3%81%A3%E3%81%A6%E3%81%A8%E3%81%A9%E3%81%AA%E3%81%AB%E3%81%AE%E3%81%AF%E3%81%B0%E3%81%B8%E3%81%B9%E3%81%BE%E3%81%BF%E3%82%84%E3%82%8B%E3%82%92%E3%82%93%E3%82%AB%E3%82%AF%E3%82%B0%E3%82%B7%E3%82%BD%E3%83%83%E3%83%90%E3%83%94%E3%83%96%E3%83%9E%E3%83%A0%E3%83%A7%E3%83%A9%E3%83%AD%E3%83%B3%E3%83%BC%E4%B8%AD%E4%BA%BA%E4%BB%B2%E4%BD%95%E5%80%8D%E5%85%A5%E5%87%BA%E5%89%8D%E5%90%8D%E5%B0%91%E5%B9%B4%E5%BE%8C%E6%89%8B%E6%95%B0%E6%9B%B8%E6%9D%A5%E6%AD%A3%E6%B0%97%E7%A9%8D%E8%80%85%E8%A7%A3%E8%AA%AC%E8%B6%85%E8%BA%AB%E9%96%89%E9%96%93%E9%A4%A8%EF%BC%9F">
 <style>
 img{max-width:100%}
 [hidden]{display:none!important}
@@ -224,7 +224,7 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 .eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;font:700 13px/1.4 var(--f-body);letter-spacing:.24em;color:var(--flesh)}
 .eyebrow .sep{width:18px;height:1px;background:var(--line-strong)}
 .lead{font:800 clamp(32px,6vw,56px)/1.38 var(--f-display);letter-spacing:.06em;text-wrap:balance;font-feature-settings:"palt"}
-.arrival .body{max-width:30em;color:var(--text)}
+.arrival .body{max-width:30em;color:var(--text);word-break:auto-phrase}
 .actions{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:6px}
 
 .ticket-wrap{filter:drop-shadow(0 22px 34px rgba(0,0,0,.55));transform:rotate(-2.4deg);justify-self:center;width:100%;max-width:500px}
@@ -305,6 +305,8 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 .pt-ic{width:34px;height:34px;color:var(--flesh)}
 .pt .pt-key{font:800 clamp(30px,4.2vw,40px)/1.2 var(--f-display);letter-spacing:.1em;color:var(--text);font-feature-settings:"palt"}
 .pt-key em{font-style:normal;color:var(--flesh)}
+.pt-q{display:block;margin:.7em 0 .5em;font:700 1.02em/1.85 var(--f-display);letter-spacing:.06em;color:var(--text)}
+.pt-strong{font-weight:700;color:var(--text)}
 .pt p{color:var(--muted);font-size:15px;line-height:1.95}
 @media (max-width:760px){.points{grid-template-columns:minmax(0,1fr)}}
 
@@ -376,6 +378,23 @@ main > section:not(.dive),footer{position:relative;z-index:1}
 .buy dd{font:700 16px/1.6 var(--f-display);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .buy small{display:block;font:500 12px/1.6 var(--f-body);color:var(--muted);letter-spacing:.1em}
 .buy-note{font-size:13px;color:var(--muted);letter-spacing:.08em}
+/* カウントダウン */
+.cd{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:30em;border:1px solid var(--line-strong);border-radius:2px;background:rgba(0,0,0,.18)}
+.cd:empty{display:none}
+.cd-cell{display:grid;gap:7px;align-content:start;padding:14px 16px 13px;min-width:0;text-align:left}
+.cd-cell+.cd-cell{border-left:1px solid var(--line-strong)}
+.cd-k{font:700 11px/1.2 var(--f-body);letter-spacing:.2em;color:var(--muted)}
+.cd-v{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px;color:var(--text)}
+.cd-a{font:700 12px/1 var(--f-body);letter-spacing:.1em;color:var(--muted);margin-right:3px}
+.cd-d{font:800 clamp(34px,8.6vw,46px)/1 var(--f-display);letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.cd-u{font:800 15px/1 var(--f-display);letter-spacing:.06em}
+.cd-t{flex-basis:100%;margin-top:6px;font:500 12px/1 var(--f-body);letter-spacing:.08em;color:var(--muted);font-variant-numeric:tabular-nums}
+.cd-big{font:800 clamp(20px,5vw,26px)/1.25 var(--f-display);letter-spacing:.08em;color:var(--text)}
+.cd-s{font:500 11px/1.55 var(--f-body);letter-spacing:.05em;color:var(--muted)}
+.cd-cell.dl .cd-d{color:var(--flesh)}
+.cd-x{display:inline-block;margin-top:3px;font-size:10.5px;color:var(--muted);opacity:.85}
+.cd-sm .cd-d{font-size:clamp(30px,7.6vw,38px)}
+@media (max-width:360px){.cd-cell{padding:12px 11px 11px}.cd-s{font-size:10.5px}}
 .buy-go{font-size:12.5px;color:var(--muted);letter-spacing:.08em;margin-top:-10px}
 .btn-paper.big{min-height:64px;font-size:21px;padding:0 40px 0 46px}
 .apply-note{font-size:13px;color:var(--flesh);border-left:1px solid var(--line-strong);padding-left:12px;max-width:30em}
@@ -437,7 +456,7 @@ html[data-hours="night"] .torch .tk-eyes{opacity:1}
 .memo::after{right:-7%;transform:rotate(12deg)}
 .memo-h{display:flex;justify-content:space-between;align-items:baseline;gap:4px;font:400 clamp(7.5px,2vw,10.5px)/1.3 var(--f-hand);letter-spacing:.04em;border-bottom:1.2px solid #b3262c;padding-bottom:3px;white-space:nowrap}
 .memo-no{color:#b3262c;letter-spacing:0}
-.memo-q{font:400 clamp(10.5px,2.85vw,15px)/1.55 var(--f-hand);letter-spacing:.02em;word-break:auto-phrase}
+.memo-q{font:400 clamp(10.5px,2.85vw,15px)/1.55 var(--f-hand);letter-spacing:.02em;white-space:pre-line;overflow-wrap:anywhere;line-break:strict}
 .memo-ok{position:absolute;right:-7%;bottom:-13%;width:clamp(30px,8.5vw,46px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1.5px solid #c0252d;color:#c0252d;background:rgba(236,230,216,.35);font:400 clamp(9px,2.4vw,13px)/1 var(--f-hand);letter-spacing:0;opacity:0;transform:rotate(-14deg) scale(1.7);transition:opacity .18s ease,transform .38s cubic-bezier(.2,.9,.3,1.25)}
 .memo.ok .memo-ok{opacity:.93;transform:rotate(-14deg) scale(1)}
 .tk-glint{position:absolute;left:50%;top:50%;width:12%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:0;
@@ -447,7 +466,7 @@ html[data-hours="night"] .torch .tk-eyes{opacity:1}
 @keyframes glint{0%,100%{opacity:0;transform:translate(-50%,-50%) scale(.7)}45%{opacity:.9;transform:translate(-50%,-50%) scale(1)}}
 html.rm .tk-glint.on{animation:none;opacity:.75}
 
-/* ---------- 閉館後スタッフ研修（竹島水族館クイズ） ---------- */
+/* ---------- 来る前の予習（竹島水族館クイズ） ---------- */
 .ks .specimen-k{letter-spacing:.3em}
 .ks-body{display:grid;gap:12px;padding:14px 16px 16px 18px;min-width:0;align-content:start}
 .ks-body>*{animation:ksIn .4s ease both}
@@ -650,7 +669,6 @@ html.rm .backyard .by-reveal{display:none}
   </a>
   <div class="bar-right">
     <span class="closed night-only">閉館中</span>
-    <span class="draft" title="このページは企画段階の素案です">素案</span>
     <a class="bar-skip when-out" href="#arrival"><span>概要へスキップ</span></a>
     <a class="bar-cta" href="#apply">申し込む</a>
   </div>
@@ -685,7 +703,7 @@ html.rm .backyard .by-reveal{display:none}
       <div class="phrases" aria-hidden="true">
         <p class="ph"><span>閉館後の水族館。</span></p>
         <p class="ph"><span>だれもいない</span><span class="lo">静かな時間。</span></p>
-        <p class="ph"><span>……のはずだった。</span></p>
+        <p class="ph"><span>・・・のはずだった。</span></p>
       </div>
       <div class="eyes" id="eyes" aria-hidden="true">
         <div class="eyes-in">
@@ -716,12 +734,13 @@ html.rm .backyard .by-reveal{display:none}
     <div class="wrap arrival-grid">
       <div class="arrival-copy">
         <p class="eyebrow"><span>竹島水族館</span><span class="sep" aria-hidden="true"></span><span>謎解きイベント 参加者募集</span><span class="soon">11月上旬 チケット販売開始</span></p>
-        <h2 class="lead" id="h-arrival">閉館後の水族館で、<br>謎を解く。</h2>
-        <p class="body">お客さんが帰り、照明の落ちた竹島水族館を、この夜は参加者だけの貸切に。館内を歩きまわって展示に隠された手がかりを集め、この水族館の「変」の正体をつきとめる謎解きイベントです。</p>
+        <h2 class="lead" id="h-arrival">この日だけの<br>特別な夜を。</h2>
+        <p class="body">お客さんが帰り、静けさにつつまれた竹島水族館。<br>この夜は参加者だけの限定貸切に。館内を歩きまわって展示に隠された手がかりを集め、この水族館の「変」の正体をつきとめる謎解きイベントです。</p>
         <div class="actions">
           <a class="btn-paper" href="#apply">申し込む</a>
           <a class="btn-line" href="#outline"><span>開催概要を見る</span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v11M2.5 7.8 7 12.3l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
         </div>
+        <div class="cd" data-cd aria-label="開催と申込締切までのカウントダウン"></div>
       </div>
       <div class="ticket-wrap">
         <figure class="ticket" aria-label="閉館後入館券。開催日は2027年1月16日（土）、1月23日（土）、1月30日（土）、時間は17時30分から19時30分、参加費は1名2,900円。会場は竹島水族館">
@@ -746,22 +765,21 @@ html.rm .backyard .by-reveal{display:none}
     <div class="wrap side">
       <div class="sec-head"><span class="tag">あらすじ</span><h2 id="h-story"><span>閉館後の館内が、</span><span>どこかおかしい。</span></h2></div>
       <div class="prose">
-        <p>閉館のチャイムが鳴り、最後のお客さんが帰っていきました。照明の落ちた館内に残ったのは、水槽のポンプの音だけ。</p>
-        <p class="hush">だれもいない、静かな時間。<br>……のはずだった。</p>
+        <p>閉館の時間を過ぎ、最後のお客さんが帰っていきました。静まりかえった館内に残ったのは、水槽のポンプの音だけ。</p>
+        <p class="hush">だれもいない、静かな時間。<br>・・・のはずだった。</p>
         <p>いるはずの生きものが見当たらない。いないはずの何かが、ガラスの向こうからこちらを見ている。</p>
         <p class="em">この水族館は、閉館後もやっぱり、なんか変。</p>
         <p>館内に残された手がかりを集めて、その「変」の正体をつきとめてください。</p>
-        <p class="note">※ ストーリー・コピーは仮のものです</p>
       </div>
     </div>
   </section>
 
   <section class="sec" id="kenshu" aria-labelledby="h-kenshu">
     <div class="wrap">
-      <div class="sec-head"><span class="tag">竹島水族館クイズ</span><h2 id="h-kenshu"><span>閉館後スタッフ</span><span>研修</span></h2><p class="sec-lead">暗い水槽のどこかに、研修メモが貼ってあります。照らしてさがして、5問に答えてください。全問正解すると、閉館後の水族館から、あるものが届きます。</p></div>
+      <div class="sec-head"><span class="tag">竹島水族館クイズ</span><h2 id="h-kenshu"><span>閉館後の水族館に</span><span>来る前に。</span></h2><p class="sec-lead">竹島水族館のこと、どれくらい知っていますか？ 閉館後の水族館に来る前に、ちょっと予習しておきましょう。暗い水槽に貼られた予習メモを照らしてさがし、5問に答えてください。全問正解すると、閉館後の水族館から、あるものが届きます。</p></div>
       <figure class="torch-fig ks-grid" aria-labelledby="h-kenshu">
         <div class="ks-stage">
-            <div class="torch" id="torch" role="img" aria-label="暗い水槽。懐中電灯で照らすと、ガラスに貼られた研修メモが見つかる。">
+            <div class="torch" id="torch" role="img" aria-label="暗い水槽。懐中電灯で照らすと、ガラスに貼られた予習メモが見つかる。">
               <div class="torch-lit">
                 <img class="tk-bg" src="tank.webp" alt="">
                 <span class="tk-glow"></span>
@@ -769,7 +787,10 @@ html.rm .backyard .by-reveal{display:none}
                 <img class="tk-rock" src="rock-front.webp" alt="">
                 <p class="t-fog">まだ、いる。</p>
                 <span class="tk-plate"><b>？？？</b></span>
-                <div class="memo" id="memo"><p class="memo-h"><span>閉館後スタッフへ</span><span class="memo-no" id="memoNo">研修 1/5</span></p><p class="memo-q" id="memoQ">竹島水族館で、アシカのほかに、ショーに出ている生きものは？</p><span class="memo-ok">正解</span></div>
+                <div class="memo" id="memo"><p class="memo-h"><span>閉館後に来るあなたへ</span><span class="memo-no" id="memoNo">1/5</span></p><p class="memo-q" id="memoQ">人気No.1のおみやげ
+「超グソクムシ
+せんべい」の
+中身は？</p><span class="memo-ok">正解</span></div>
               </div>
               <span class="tk-glint" id="tkGlint"></span>
               <div class="torch-glow"></div>
@@ -777,8 +798,8 @@ html.rm .backyard .by-reveal{display:none}
         </div>
         <div class="ks-side">
             <div class="specimen ks" id="ks">
-              <span class="specimen-k">スタッフ研修</span>
-              <div class="ks-body" id="ksBody" aria-live="polite"><p class="ks-say">暗がりのどこかに、研修メモが貼ってあります。</p></div>
+              <span class="specimen-k">予習ノート</span>
+              <div class="ks-body" id="ksBody" aria-live="polite"><p class="ks-say">暗がりのどこかに、予習メモが貼ってあります。</p></div>
             </div>
             <span class="spec-live night-only">ただいま観察できます</span>
             <figcaption><span class="cap-touch">指でなぞると、暗闇を照らせます</span><span class="cap-fine">カーソルを動かすと、暗闇を照らせます</span></figcaption>
@@ -794,17 +815,17 @@ html.rm .backyard .by-reveal{display:none}
         <div class="pt">
           <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M16 8.5V16l-4.6 3.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
           <p class="pt-key"><em>閉館</em>後</p>
-          <p>お客さんが帰ったあとの竹島水族館を、参加者だけの貸切に。照明の落ちた館内を、自分の足で歩きまわります。</p>
+          <p>お客さんが帰ったあとの竹島水族館を、参加者だけの限定貸切に。静まりかえった夜の館内を、自分の足で歩きまわります。</p>
         </div>
         <div class="pt">
           <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="13.5" cy="13.5" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m20 20 8 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M9 14c1.6-2.2 3.4-3.2 5.3-3.2 1.4 0 2.6.6 3.5 1.6-.9 1-2.1 1.6-3.5 1.6-1.9 0-3.7-1-5.3-3.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
           <p class="pt-key"><em>展示</em>が鍵</p>
-          <p>水槽、解説パネル、生きもののしぐさ。館内にあるものすべてが、謎を解く手がかりになります。</p>
+          <p>水槽、解説パネル、生きもののしぐさ。館内にあるものすべてが、謎を解く手がかりになります。<span class="pt-q">「こんなところ、あったっけ？」<br>「こんなもの、あったっけ？」</span>昼間の水族館とのちがいに、あなたは気づけるだろうか。</p>
         </div>
         <div class="pt">
-          <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="3.5" width="14" height="25" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M14 24.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
-          <p class="pt-key"><em>スマホ</em>で</p>
-          <p>出題も答え合わせも、スマートフォンのWEBページで行います。アプリのインストールや端末の設定変更はいりません。</p>
+          <svg class="pt-ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M3.5 9.5h12v18h-12z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6.5 14h6M6.5 17.5h6M6.5 21h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><rect x="17.5" y="4" width="11" height="20" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M21.5 20.5h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <p class="pt-key"><em>スマホ</em>と<em>キット</em>で</p>
+          <p>当日お渡しするキットと、スマートフォンのWEBページを行き来しながら解きます（アプリのインストールは不要）。<strong class="pt-strong">キットだけでも、スマホだけでも、すべての謎は解けません。</strong>スマホの充電は、満タンで来てください。</p>
         </div>
       </div>
     </div>
@@ -824,6 +845,7 @@ html.rm .backyard .by-reveal{display:none}
         <dt>対象</dt><dd>どなたでも参加できます<span class="sub">小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は、大人がじっくり頭をひねる難しさです。</span></dd>
         <dt>持ち物</dt><dd>スマートフォン（必須）<span class="sub">バインダーがあると便利です。通信料はお客さまのご負担となります。</span></dd>
         <dt>申込方法</dt><dd>チケット販売サイトから<span class="sub">11月上旬 販売開始予定</span></dd>
+        <dt>申込締切</dt><dd>各開催日の1週間前 23:59まで<span class="sub">1月16日の回は1月9日（土）、1月23日の回は1月16日（土）、1月30日の回は1月23日（土）<br>※定員になりしだい、締切前でも受付を終了する場合があります。</span></dd>
         <dt>キャンセル</dt><dd>お客さま都合のキャンセル・払い戻しはできません<span class="sub">主催者の都合で中止する場合は払い戻します</span></dd>
         <dt>アクセス</dt><dd>JR蒲郡駅（南口）から徒歩約15分<span class="sub">水族館の近くに無料駐車場があります（日によっては有料の場合あり）</span></dd>
         <dt>主催</dt><dd>株式会社ウィーケン × 竹島水族館</dd>
@@ -839,12 +861,12 @@ html.rm .backyard .by-reveal{display:none}
         <div class="qz-card" id="qzCard">
           <div class="qz-step" id="qzStep">
             <div class="qz-top"><span id="qzNo">Q1 / 4</span><span class="qz-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span></div>
-            <p class="qz-q" id="qzQ" tabindex="-1">閉館のチャイムが鳴った。<br>そのとき、あなたは？</p>
+            <p class="qz-q" id="qzQ" tabindex="-1">最後のお客さんが帰っていった。<br>そのとき、あなたは？</p>
             <div class="qz-opts" id="qzOpts">
               <button class="qz-opt" type="button" data-t="tako">なにか起きる気がして、わくわくしてくる</button>
               <button class="qz-opt" type="button" data-t="chin">まわりの様子を、そっとうかがう</button>
               <button class="qz-opt" type="button" data-t="iwashi">近くにいる人と、思わず目を合わせる</button>
-              <button class="qz-opt" type="button" data-t="kurage">暗くなっていく水槽に、見とれてしまう</button>
+              <button class="qz-opt" type="button" data-t="kurage">人のいなくなった水槽に、見とれてしまう</button>
             </div>
           </div>
         </div>
@@ -858,13 +880,13 @@ html.rm .backyard .by-reveal{display:none}
 
   <section class="sec" id="flow" aria-labelledby="h-flow">
     <div class="wrap side">
-      <div class="sec-head"><span class="tag">当日のスケジュール</span><h2 id="h-flow"><span>閉館のチャイムから、</span><span>消灯まで。</span></h2><p class="sec-lead">この夜、参加するみなさんは「閉館後スタッフ」として館内に入ります。</p></div>
+      <div class="sec-head"><span class="tag">当日のスケジュール</span><h2 id="h-flow"><span>閉館の時間から、</span><span>消灯まで。</span></h2><p class="sec-lead">この夜、参加するみなさんは「閉館後スタッフ」として館内に入ります。</p></div>
       <div>
         <div class="route"><span class="route-sign">順路<svg viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1v17M2 12l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span></div>
         <ol class="flow" id="flowList">
           <li><span class="fn">1</span><div><p class="tm">16:45〜17:20</p><h3>受付</h3><p>入口で受付をすませて、館内へ。受付時間を過ぎると参加できません。</p></div></li>
           <li><span class="fn">2</span><div><p class="tm">17:30〜17:45</p><h3>閉館作業の説明<span class="plain">イベントの説明</span></h3><p>今夜の閉館作業の進め方と、ルールを説明します。</p></div></li>
-          <li><span class="fn">3</span><div><p class="tm">17:45〜18:45</p><h3>閉館作業<span class="plain">謎解き</span></h3><p>照明の落ちた館内を見回って、「なんか変」なところを調べます。</p></div></li>
+          <li><span class="fn">3</span><div><p class="tm">17:45〜18:45</p><h3>閉館作業<span class="plain">謎解き</span></h3><p>閉館後の館内を見回って、「なんか変」なところを調べます。</p></div></li>
           <li><span class="fn">4</span><div><p class="tm">18:45〜19:00</p><h3>終礼<span class="plain">答え合わせ・解説</span></h3><p>今夜見つかった「変」の正体を、全員で確かめます。</p></div></li>
           <li><span class="fn">5</span><div><p class="tm">19:00〜19:30</p><h3>居残り見学<span class="plain">自由見学</span></h3><p>閉館後の水族館を、自由に見てまわれます。</p></div></li>
           <li><span class="fn">6</span><div><p class="tm">19:30</p><h3>消灯<span class="plain">閉館</span></h3><p>おつかれさまでした。</p></div></li>
@@ -877,15 +899,15 @@ html.rm .backyard .by-reveal{display:none}
     <div class="wrap side">
       <div class="sec-head"><span class="tag">よくある質問</span><h2 id="h-faq">出勤の前に。</h2><p class="sec-lead">閉館後スタッフとして来てくださる前に、よく聞かれることをまとめました。</p></div>
       <div class="faq" lang="ja">
-        <details><summary><span>ひとりでも、友だちといっしょでも参加できますか？</span></summary><p class="ans">どちらでも大丈夫です。キットは<strong>1人1つ</strong>で、チームを組む必要はありません。ひとりで黙々と見回るのも、友だちや家族と「ここ、なんか変じゃない？」と相談しながら進めるのも自由です。</p></details>
-        <details><summary><span>「閉館後スタッフ」って、何をするんですか？</span></summary><p class="ans"><strong>本当の仕事はありません。</strong>この夜のみなさんは、物語のなかの「閉館後スタッフ」として館内に入り、「閉館作業」という名の謎解きに取りかかります。水槽の掃除やエサやりをお願いすることはないので、ご安心ください。</p></details>
-        <details><summary><span>謎解きがはじめてでも楽しめますか？</span></summary><p class="ans">楽しめます。謎は手ごたえのある難しさですが、終礼で答えと解説があります。解けても解けなくても、閉館後の竹島水族館を貸切で歩けるのは、この3日間の夜だけです。</p></details>
-        <details><summary><span>前作に参加していなくても楽しめますか？</span></summary><p class="ans">楽しめます。前作「この水族館、なんか変。」に参加していなくても、まったく問題ありません。閉館後からの“新入りスタッフ”も大歓迎です。</p></details>
+        <details><summary><span>ひとりで参加できますか？ 友だちといっしょでも大丈夫ですか？</span></summary><p class="ans">どちらでも参加できます。キットは<strong>1人に1つずつ</strong>お渡しするので、チームを組む必要はありません。ひとりでじっくり解くのも、友だちや家族と相談しながら解くのも自由です。</p></details>
+        <details><summary><span>「閉館後スタッフ」って、何をするんですか？</span></summary><p class="ans">この夜、みなさんには「閉館後スタッフ」として館内に入ってもらいます。役目は、閉館後の館内を見回って「なんか変」なところを見つけ、謎を解くこと。これを<strong>「閉館作業」</strong>と呼んでいます。水槽のそうじやエサやりなど、飼育のお手伝いはありません。</p></details>
+        <details><summary><span>謎解きがはじめてでも楽しめますか？</span></summary><p class="ans">楽しめます。謎は手ごたえのある難しさですが、終礼で答えと解説があります。解けても解けなくても、閉館後の竹島水族館を限定貸切で歩けるのは、この3日間の夜だけです。</p></details>
+        <details><summary><span>前作に参加していなくても大丈夫ですか？</span></summary><p class="ans">大丈夫です。前作「この水族館、なんか変。」に参加していなくても、問題なく楽しめる内容です。</p></details>
         <details><summary><span>3日間とも同じ内容ですか？</span></summary><p class="ans">3日とも同じ閉館作業です。それでもよければ、何度でも出勤してください。よろこんでお待ちしています。</p></details>
         <details><summary><span>夜の水族館って、こわくないですか？</span></summary><p class="ans"><strong>おどかし役のスタッフや、急に飛び出してくる仕掛けはありません。</strong>閉館後の静かな館内で、「なんか変」なところを探して謎を解いていくイベントです。ガラスの向こうからこちらを見ているのは、たぶん、いつもの魚たちです。</p></details>
-        <details><summary><span>子どもも参加できますか？ 料金は？</span></summary><p class="ans">参加できます。<strong>小学生以上は有料（1名2,900円・1人1キット）、未就学児は無料</strong>です（キットはつきません）。小学生も、大人と同じ料金です。<br>小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は大人がじっくり楽しめる難しさなので、大人とペアで解くのがおすすめです。照明を落とした館内なので、閉館作業のあいだは、お子さまのそばを離れないでください。</p></details>
+        <details><summary><span>子どもも参加できますか？ 料金は？</span></summary><p class="ans">参加できます。<strong>小学生以上は有料（1名2,900円・1人1キット）、未就学児は無料</strong>です（キットはつきません）。小学生も、大人と同じ料金です。<br>小学生以下のお子さまは、保護者の方といっしょにご参加ください（保護者の方もチケットが必要です）。謎は大人がじっくり楽しめる難しさなので、大人とペアで解くのがおすすめです。閉館作業のあいだは館内を歩きまわるので、お子さまのそばを離れないでください。</p></details>
         <details><summary><span>受付は何時ですか？ 遅れてしまったら？</span></summary><p class="ans">受付は<strong>16:45〜17:20</strong>です。17:30から閉館作業の説明がはじまるため、<strong>受付時間を過ぎると参加できません。</strong>閉館の時間は待ってくれないので、余裕をもってお越しください。</p></details>
-        <details><summary><span>当日は何を持っていけばいいですか？</span></summary><p class="ans"><strong>スマートフォンは必須です。</strong>出題も答え合わせもスマートフォンで行う、閉館作業のいちばん大事な道具です。充電は満タンにしてお越しください。<br>あわせて、バインダーがあると便利です。館内を歩きながら、立ったままでも書きこめます（必須ではありません）。<small>※ 謎解き中はスマートフォンでWEBページを使います。通信料はお客さまのご負担となります。</small></p></details>
+        <details><summary><span>当日は何を持っていけばいいですか？</span></summary><p class="ans"><strong>スマートフォンは必須です。</strong>謎は、当日お渡しするキットとスマートフォンの両方を使って解きます。充電は満タンにしてお越しください。<br>あわせて、バインダーがあると便利です。館内を歩きながら、立ったままでも書きこめます（必須ではありません）。<small>※ 謎解き中はスマートフォンでWEBページを使います。通信料はお客さまのご負担となります。</small></p></details>
         <details><summary><span>写真を撮ったり、SNSに投稿したりできますか？</span></summary><p class="ans">撮影も、SNSへの投稿も大歓迎です。<strong>ただし、謎の内容や答え、物語の結末がわかる写真や書きこみは固くお断りします。</strong>この夜に見つけた「変」は、まだ来ていない人のために、そっと胸にしまっておいてください。<small>投稿するときは #この水族館なんか変 をつけてもらえるとうれしいです。ほかの参加者の方が写りこまないよう、ご配慮ください。</small></p></details>
         <details><summary><span>閉館作業の途中で、早退できますか？</span></summary><p class="ans">早退はできますが、おすすめしません。途中で退館された場合も、参加費は返金できません。また、閉館作業を最後まで終えられず、謎の結末にたどり着けないかもしれません。</p></details>
         <details><summary><span>閉館作業が終わったら、すぐ帰らないといけませんか？</span></summary><p class="ans">終礼のあとは<strong>「居残り見学」</strong>の時間です。19:30の消灯まで、閉館後の水族館を自由に見てまわれます。消灯で、閉館後スタッフは全員退勤。そのまま泊まっていけるのは、魚たちだけです。</p></details>
@@ -910,8 +932,10 @@ html.rm .backyard .by-reveal{display:none}
           <div><dt>日程</dt><dd>1月16日・23日・30日<small>2027年・いずれも土曜日</small></dd></div>
           <div><dt>時間</dt><dd>17:30〜19:30<small>受付 16:45〜17:20</small></dd></div>
           <div><dt>参加費</dt><dd>2,900円<small>1名・小学生以上（未就学児は無料）</small></dd></div>
+          <div><dt>締切</dt><dd>各開催日の1週間前<small>23:59まで ※定員になりしだい早期終了あり</small></dd></div>
         </dl>
-        <p class="buy-note">受付（16:45〜17:20）を過ぎると、閉館作業には参加できません。小学生以下のお子さまは、保護者の方といっしょにご参加ください。お客さま都合のキャンセル・払い戻しはできません。各日、定員になりしだい販売終了です。チケットは11月上旬に販売開始予定です。</p>
+        <div class="cd cd-sm" data-cd aria-label="開催と申込締切までのカウントダウン"></div>
+        <p class="buy-note">受付（16:45〜17:20）を過ぎると、閉館作業には参加できません。小学生以下のお子さまは、保護者の方といっしょにご参加ください。お客さま都合のキャンセル・払い戻しはできません。申込締切は各開催日の1週間前 23:59です。※定員になりしだい、締切前でも受付を終了する場合があります。チケットは11月上旬に販売開始予定です。</p>
         <a class="btn-paper big ticket-link" href="#apply" data-note="applyNote">申し込む<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
         <p class="buy-go">チケット販売サイトに移動して、お申し込みいただけます。</p>
         <p class="apply-note" id="applyNote" hidden>チケット販売ページは準備中です。URLが決まったら、このボタンからそのまま購入ページへ移動します。</p>
@@ -924,7 +948,6 @@ html.rm .backyard .by-reveal{display:none}
 <footer>
   <div class="wrap foot">
     <dl><div><dt>主催</dt><dd>株式会社ウィーケン × 竹島水族館</dd></div><div><dt>お問い合わせ</dt><dd><span class="mail" data-mail><span class="tbd">メールアドレス 準備中</span></span></dd></div></dl>
-    <p>このページは企画段階の素案です。掲載している日程・料金・内容はすべて仮のものです。</p>
     <p class="hours"><span class="day-only">このページは、閉館後（17:00〜翌9:00）すこし変わります。</span><span class="night-only">ただいま閉館後です（17:00〜翌9:00）。</span></p>
     <button class="by-link" id="byLink" type="button" hidden>招待状を見る</button>
   </div>
@@ -961,7 +984,7 @@ html.rm .backyard .by-reveal{display:none}
       <section class="by-wp" aria-label="ロック画面用の壁紙">
         <div class="wp-frame"><img id="wpImg" alt="ロック画面用の壁紙。暗闇に光る魚の目と、この水族館、なんか変。のロゴ。"><span class="wp-wait" id="wpWait">壁紙をつくっています</span></div>
         <div class="wp-text">
-          <p>照明の落ちた館内で、目だけが光るロック画面です。</p>
+          <p>暗闇で、目だけが光るロック画面です。</p>
           <a class="by-btn" id="wpSave" href="#" download="heikan-wallpaper.jpg">壁紙を保存</a>
           <p class="by-small">保存できないときは、画像を長押しして保存してください。</p>
         </div>
@@ -1048,7 +1071,7 @@ html.rm .backyard .by-reveal{display:none}
   const LIFT = 52;   // 指で照らすときは、指で光が隠れないよう少し上を照らす
   const setLight = (X, Y, touch) => { const r = torch.getBoundingClientRect(); if (touch) Y -= LIFT; tx = clamp((X - r.left) / r.width, -.1, 1.1); ty = clamp((Y - r.top) / r.height, -.1, 1.1); manual = performance.now(); };
   const aimAt = (x, y) => { tx = x; ty = y; manual = performance.now(); };
-  let torchHook = null;   // 研修クイズが、光の位置を見て使う
+  let torchHook = null;   // 予習クイズが、光の位置を見て使う
   torch.addEventListener('pointermove', e => setLight(e.clientX, e.clientY, e.pointerType === 'touch'));
   torch.addEventListener('pointerdown', e => setLight(e.clientX, e.clientY, e.pointerType === 'touch'));
   torch.addEventListener('touchstart', e => { const t = e.touches[0]; setLight(t.clientX, t.clientY, true); }, { passive: true });
@@ -1071,6 +1094,37 @@ html.rm .backyard .by-reveal{display:none}
   }
   new IntersectionObserver(es => es.forEach(e => torchOn = e.isIntersecting), { rootMargin: '80px' }).observe(torch);
 
+
+
+  /* ---------- カウントダウン（開催まで／申込締切まで） ---------- */
+  const jst = (y, mo, d, h, mi, se = 0) => Date.UTC(y, mo - 1, d, h - 9, mi, se);
+  const SHOWS = [
+    { day: '1月16日（土）', start: jst(2027, 1, 16, 17, 30), end: jst(2027, 1, 16, 19, 30), dl: jst(2027, 1, 9, 23, 59, 59), dlDay: '1月9日（土）' },
+    { day: '1月23日（土）', start: jst(2027, 1, 23, 17, 30), end: jst(2027, 1, 23, 19, 30), dl: jst(2027, 1, 16, 23, 59, 59), dlDay: '1月16日（土）' },
+    { day: '1月30日（土）', start: jst(2027, 1, 30, 17, 30), end: jst(2027, 1, 30, 19, 30), dl: jst(2027, 1, 23, 23, 59, 59), dlDay: '1月23日（土）' }
+  ];
+  const cdBoxes = [...document.querySelectorAll('[data-cd]')];
+  const pad = n => String(n).padStart(2, '0');
+  const split = ms => { const t = Math.max(0, Math.floor(ms / 1000)); return { d: Math.floor(t / 86400), h: Math.floor(t % 86400 / 3600), m: Math.floor(t % 3600 / 60), s: t % 60 }; };
+  function cdCell(cls, k, ms, sub, big) {
+    let v;
+    if (big) v = `<p class="cd-big">${big}</p>`;
+    else { const t = split(ms); v = `<p class="cd-v"><span class="cd-a">あと</span><b class="cd-d">${t.d}</b><span class="cd-u">日</span><span class="cd-t">${pad(t.h)}時間 ${pad(t.m)}分 ${pad(t.s)}秒</span></p>`; }
+    return `<div class="cd-cell ${cls}"><p class="cd-k">${k}</p>${v}<p class="cd-s">${sub}</p></div>`;
+  }
+  function tickCd() {
+    const now = Date.now();
+    const ev = SHOWS.find(x => x.end > now), dl = SHOWS.find(x => x.dl > now);
+    let a;
+    if (!ev) a = cdCell('ev', '開催', 0, 'ご来館ありがとうございました', '全日程終了');
+    else if (now >= ev.start) a = cdCell('ev', ev.day, 0, '17:30〜19:30', 'ただいま開催中');
+    else a = cdCell('ev', ev === SHOWS[0] ? '開催まで' : '次の開催まで', ev.start - now, (ev === SHOWS[0] ? '初日の回' : '次の回') + '<br>' + ev.day + ' 17:30 開始');
+    const b = dl ? cdCell('dl', '申込締切まで', dl.dl - now, `${dl.day.replace(/（.）/, '')}の回<br>${dl.dlDay} 23:59 締切<br><span class="cd-x">※定員で早期終了あり</span>`)
+                 : cdCell('dl', '申込締切', 0, '全日程のお申し込みを締め切りました', '受付終了');
+    const html = a + b;
+    cdBoxes.forEach(el => { if (el.innerHTML !== html) el.innerHTML = html; });
+  }
+  if (cdBoxes.length) { tickCd(); setInterval(tickCd, 1000); }
 
   /* ---------- 閉館後 ---------- */
   const OPEN_H = 9, CLOSE_H = 17;          // 日本時間。閉館後モードになる時間帯
@@ -1265,13 +1319,13 @@ html.rm .backyard .by-reveal{display:none}
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
 
-  /* ---------- 閉館後スタッフ研修（竹島水族館クイズ） ----------
+  /* ---------- 来る前の予習（竹島水族館クイズ） ----------
      暗がりのメモを照らして見つける → 答える → 全問正解のあと、水槽の奥の目と目が合うと招待状。 */
-  const QUIZ = [{"q": "竹島水族館で、アシカのほかに、ショーに出ている生きものは？", "o": ["イルカ", "カピバラ", "シャチ"], "a": 1, "e": "水族館なのに、カピバラ。アシカショーとはべつに、カピバラのショーがあります。", "at": [9, 14, -4]},
-    {"q": "竹島水族館が、日本でもトップクラスの種類を展示している生きものは？", "o": ["クラゲ", "ペンギン", "深海の生きもの"], "a": 2, "e": "地元の漁師さんとの強いつながりがあるからこそ、100種類以上の深海の生きものに会えます。", "at": [57, 60, 4]},
-    {"q": "竹島水族館で、手でさわれる「世界最大級のカニ」は？", "o": ["タカアシガニ", "タラバガニ", "ズワイガニ"], "a": 0, "e": "あしを広げると3mをこえることもある、世界最大級のカニ。生きものにさわれるプールで、そっとさわれます。", "at": [7, 60, -3]},
-    {"q": "竹島水族館の手書きの解説に、書いてあることがあるのは？", "o": ["その魚の血液型", "食べたときの味", "その魚の星座"], "a": 1, "e": "飼育員さんの手書きの解説には、食べたときの味や、お値段まで書いてあることも。読みはじめると、なかなか次の水槽へ進めません。", "at": [58, 16, 3]},
-    {"q": "ふだんの竹島水族館は、何時に閉館する？", "o": ["17:00", "19:30", "21:00"], "a": 0, "e": "ふだんは17:00に閉館します（入館は16:30まで）。この3日間の夜だけは、その“あと”におじゃまします。", "at": [26, 35, -6]}];
+  const QUIZ = [{"q": "竹島水族館でいちばん人気のおみやげ「超グソクムシせんべい」。せんべいに入っているのは？", "m": "人気No.1のおみやげ\n「超グソクムシ\nせんべい」の\n中身は？", "o": ["エビの粉", "オオグソクムシの粉", "深海の塩"], "a": 1, "e": "“深海のダンゴムシ”とも呼ばれるオオグソクムシの粉が、本当に入っています。それでも、おみやげの一番人気です。", "at": [9, 14, -4]},
+    {"q": "竹島水族館でショーに出ているカピバラ。じつは、なんの仲間？", "m": "ショーに出る\nカピバラは、\nなんの仲間？", "o": ["ブタの仲間", "クマの仲間", "ネズミの仲間"], "a": 2, "e": "カピバラは、世界でいちばん大きなネズミの仲間です。水族館なのにカピバラのショーがあるのも、竹島水族館ならでは。", "at": [57, 60, 4]},
+    {"q": "竹島水族館にある、ブロックを積んでつくった“マンション”。その名前は？", "m": "ブロックを積んだ\n“マンション”の\n名前は？", "o": ["タケスイハイツ", "タケシマンション", "さかな荘"], "a": 1, "e": "「竹島」と「マンション」をかけた名前です。コンクリートブロックを積み上げてつくった、生きものたちのすみか。館内で、ぜひさがしてみてください。", "at": [7, 60, -3]},
+    {"q": "竹島水族館の手書きの解説に、ときどき書いてあるのは？", "m": "手書きの解説に、\nときどき書いて\nあるのは？", "o": ["飼育員さんが食べてみた感想", "飼育員さんが泳いでみた感想", "飼育員さんがいっしょに寝た感想"], "a": 0, "e": "飼育員さんが実際に食べた感想や、お値段まで書いてあることも。読みはじめると、なかなか次の水槽へ進めません。", "at": [58, 16, 3]},
+    {"q": "一時は廃館も話し合われた竹島水族館。いまの年間入館者数は、いちばん少なかったころの何倍？", "m": "いまの入館者数は\nいちばん少なかった\n年の何倍？", "o": ["約2倍", "約4倍", "約10倍"], "a": 1, "e": "いちばん少なかった2005年は約12万人。いまは約50万人が訪れる、人気の水族館になりました。", "at": [26, 35, -6]}];
   const QKEY = 'nankahen-heikango-kenshu';
   const qLoad = () => { try { const v = JSON.parse(localStorage.getItem(QKEY) || 'null'); return v && Number.isInteger(v.i) ? clamp(v.i, 0, QUIZ.length - 1) : 0; } catch (e) { return 0; } };
   const qSave = i => { try { localStorage.setItem(QKEY, JSON.stringify({ i })); } catch (e) {} };
@@ -1279,7 +1333,7 @@ html.rm .backyard .by-reveal{display:none}
   const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
   const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
   const MARKS = ['ア', 'イ', 'ウ'];
-  const NG = ['ちがうみたい。もう一度。', 'うーん、それではないようです。', '先輩スタッフが、首をかしげています。'];
+  const NG = ['ちがうみたい。もう一度。', 'うーん、それではないようです。', 'おしい……かも。もう一度。'];
   let ksI = qLoad(), ksPhase = 'search', ngN = 0, seekT = 0, waitT = 0, eyeT = 0, pinK = 0, pinGoal = 0, mR = null;
 
   function measureMemo() {
@@ -1299,22 +1353,22 @@ html.rm .backyard .by-reveal{display:none}
   function showMemo() {
     const Q = QUIZ[ksI];
     memo.classList.remove('found', 'ok');
-    memoNo.textContent = '研修 ' + (ksI + 1) + '/' + QUIZ.length;
-    memoQ.textContent = Q.q;
+    memoNo.textContent = (ksI + 1) + '/' + QUIZ.length;
+    memoQ.textContent = Q.m || Q.q;
     memo.style.setProperty('--l', Q.at[0] + '%'); memo.style.setProperty('--t', Q.at[1] + '%'); memo.style.setProperty('--rot', Q.at[2] + 'deg');
     measureMemo(); pinGoal = 0; setPin(0);
   }
   function top() {
     const t = mk('div', 'ks-top'), n = mk('p', 'ks-n'), d = mk('span', 'ks-dots');
     const fin = ksPhase === 'final' || ksPhase === 'done';
-    n.innerHTML = ksPhase === 'done' ? '研修 <b>修了</b>' : '研修メモ <b>' + (ksI + 1) + '</b> / ' + QUIZ.length;
+    n.innerHTML = ksPhase === 'done' ? '予習 <b>完了</b>' : '予習メモ <b>' + (ksI + 1) + '</b> / ' + QUIZ.length;
     d.setAttribute('aria-hidden', 'true');
     QUIZ.forEach((_, i) => d.append(mk('i', fin || i < ksI || (i === ksI && ksPhase === 'ok') ? 'ok' : i === ksI ? 'now' : '')));
     t.append(n, d); return t;
   }
   function renderSearch() {
     const say = mk('p', 'ks-say');
-    say.innerHTML = ksI === 0 ? '暗がりのどこかに、研修メモが貼ってあります。<br>照らして、さがしてください。' : '次のメモは、暗がりのべつの場所に。<br>照らして、さがしてください。';
+    say.innerHTML = ksI === 0 ? '暗がりのどこかに、予習メモが貼ってあります。<br>照らして、さがしてください。' : '次のメモは、暗がりのべつの場所に。<br>照らして、さがしてください。';
     const hint = mk('button', 'ks-hint', '見つからないときは、ここを押す'); hint.type = 'button'; hint.id = 'ksHint'; hint.hidden = true;
     hint.addEventListener('click', () => { if (mR) aimAt(mR.l + mR.w / 2, mR.t + mR.h / 2); found(); });
     ksBody.replaceChildren(top(), say, hint);
@@ -1342,7 +1396,7 @@ html.rm .backyard .by-reveal{display:none}
     ksBody.querySelector('.ks-msg').textContent = '';
     ksBody.querySelector('.ks-top').replaceWith(top());
     const ex = mk('div', 'ks-ex'); ex.append(mk('span', 'ks-ex-k', '解説'), mk('p', 'ks-ex-t', Q.e));
-    const nx = mk('button', 'ks-next'); nx.type = 'button'; nx.innerHTML = (last ? '研修をおえる' : '次のメモをさがす') + ARROW;
+    const nx = mk('button', 'ks-next'); nx.type = 'button'; nx.innerHTML = (last ? '予習をおえる' : '次のメモをさがす') + ARROW;
     nx.addEventListener('click', last ? toFinal : () => goTo(ksI + 1));
     ksBody.append(ex, nx);
     if (!last) qSave(ksI + 1);
@@ -1366,17 +1420,17 @@ html.rm .backyard .by-reveal{display:none}
     pinTo(0); memo.classList.add('leaving');
     torch.classList.add('eyes-on');
     glintAt(.805, .47, true); glint.classList.add('on');
-    const say = mk('p', 'ks-say'); say.innerHTML = '研修は、これでおしまい。おつかれさまでした。<br>……水槽の奥で、なにかが光った。<br>照らしてみてください。';
+    const say = mk('p', 'ks-say'); say.innerHTML = '予習は、これでおしまい。おつかれさまでした。<br>……水槽の奥で、なにかが光った。<br>照らしてみてください。';
     const hint = mk('button', 'ks-hint', '照らしてみる'); hint.type = 'button'; hint.id = 'ksHint'; hint.hidden = !RM;
     hint.addEventListener('click', () => { aimAt(.805, .47); setTimeout(reveal, RM ? 0 : 750); });
     ksBody.replaceChildren(top(), say, hint);
   }
   function renderDone() {
-    const row = mk('div', 'ks-done-row'); row.append(mk('p', 'ks-big', '全' + QUIZ.length + '問　正解'), mk('span', 'solved-stamp', '修了'));
+    const row = mk('div', 'ks-done-row'); row.append(mk('p', 'ks-big', '全' + QUIZ.length + '問　正解'), mk('span', 'solved-stamp', '合格'));
     const say = mk('p', 'ks-say2', '暗闇の目と目が合った人にだけ、閉館後の招待状が届いています。');
     const go = mk('button', 'ks-next'); go.type = 'button'; go.innerHTML = '招待状を見る' + ARROW;
     go.addEventListener('click', () => openBackyard(false));
-    const again = mk('button', 'ks-again', 'もう一度、研修を受ける'); again.type = 'button';
+    const again = mk('button', 'ks-again', 'もう一度、予習する'); again.type = 'button';
     again.addEventListener('click', () => goTo(0));
     const acts = mk('div', 'ks-acts'); acts.append(go, again);
     ksBody.replaceChildren(top(), row, say, acts);
@@ -1435,14 +1489,14 @@ html.rm .backyard .by-reveal{display:none}
               pitch: '群れで来るほど、強くなる夜です。' },
     kurage: { name: 'ただようクラゲ系', mod: 'ただよう', short: 'クラゲ系',
               feat: '流れに身をまかせて、夜の空気そのものを楽しむ。正解よりも、その場の景色をよく覚えている。',
-              move: '謎を解いたあとの「居残り見学」まで、ゆっくり楽しんで。照明の落ちた水槽は、昼とはちがう顔をしている。',
+              move: '謎を解いたあとの「居残り見学」まで、ゆっくり楽しんで。閉館後の水槽は、昼とはちがう顔をしている。',
               who: '夜の水族館を、いっしょに歩きたい人と。',
-              pitch: '照明の落ちた水族館を、ただよいに来てください。' }
+              pitch: '閉館後の水族館を、ただよいに来てください。' }
   };
   const QS = [
-    { q: '閉館のチャイムが鳴った。\nそのとき、あなたは？', a: [
+    { q: '最後のお客さんが帰っていった。\nそのとき、あなたは？', a: [
       ['tako', 'なにか起きる気がして、わくわくしてくる'], ['chin', 'まわりの様子を、そっとうかがう'],
-      ['iwashi', '近くにいる人と、思わず目を合わせる'], ['kurage', '暗くなっていく水槽に、見とれてしまう']] },
+      ['iwashi', '近くにいる人と、思わず目を合わせる'], ['kurage', '人のいなくなった水槽に、見とれてしまう']] },
     { q: '謎の書かれた紙をわたされた。\n最初にすることは？', a: [
       ['chin', 'すみずみまで、じっくり読む'], ['tako', '思いついた答えを、とりあえず言ってみる'],
       ['kurage', '紙の手ざわりや、デザインをながめる'], ['iwashi', 'みんなで顔を寄せて、いっしょに読む']] },
